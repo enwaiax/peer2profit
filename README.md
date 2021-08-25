@@ -26,3 +26,7 @@ wget https://raw.githubusercontent.com/Chasing66/peer2profit/main/peer2fly.sh
 chmod +x peer2fly.sh
 ./peer2fly.sh --email "Your email" --number "Container numbers"
 ```
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/Chasing66/peer2profit.svg)](https://starchart.cc/Chasing66/peer2profit)
