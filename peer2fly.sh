@@ -10,7 +10,7 @@ function set_vps_swap() {
     else
         echo "Swap file is not exist"
         echo "Create swap file"
-        wget -Nnv https://raw.githubusercontent.com/Chasing66/beautiful_docker/main/peer2profit/swap.sh &>/dev/null
+        wget -Nnv https://raw.githubusercontent.com/Chasing66/peer2profit/main/swap.sh &>/dev/null
         chmod +x swap.sh
         source swap.sh
     fi
@@ -110,7 +110,7 @@ function install_docker_dockercompose() {
 
 function download_compose_file()
 {
-    wget -Nnv https://raw.githubusercontent.com/Chasing66/beautiful_docker/main/peer2profit/docker-compose.yml &>/dev/null
+    wget -Nnv https://raw.githubusercontent.com/Chasing66/peer2profit/main/docker-compose.yml &>/dev/null
 }
 
 function set_peer2profit_email()

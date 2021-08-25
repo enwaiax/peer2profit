@@ -87,4 +87,4 @@ case "$num" in
     esac
 }
 
-main()
+main

@@ -22,7 +22,7 @@ chmod +x peer2fly.sh
 ```
 - One Click Script
 ```shell
-wget https://raw.githubusercontent.com/Chasing66/beautiful_docker/main/peer2profit/peer2fly.sh
+wget https://raw.githubusercontent.com/Chasing66/peer2profit/main/peer2fly.sh
 chmod +x peer2fly.sh
 ./peer2fly.sh --email "Your email" --number "Container numbers"
 ```
