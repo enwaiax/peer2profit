@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  Peer2Profit:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: enwaiax/peer2profit
+    restart: unless-stopped
+    command: ["/app/p2pclient", "-l", "${email}"]
