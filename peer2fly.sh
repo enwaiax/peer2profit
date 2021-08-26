@@ -5,7 +5,7 @@
 function set_vps_swap() {
     # check whether swap is exist
     if [ -f /swapfile ]; then
-        echo "Swap file is exist"
+        echo "Swap file is exist. Begin to install"
         return 0
     else
         echo "Swap file is not exist"
@@ -56,12 +56,8 @@ function install_mandantory_packages()
     echo "Linux version is: $linux_version"
     if [ $(echo $linux_distribution | grep "CentOS" &>/dev/null; echo $?) -eq 0  ]; then
         yum install wget sudo curl bc -y &>/dev/null
-        if [ `echo ${linux_version} | awk -v tem="7" '{print($1<tem)? "1":"0"}'` -eq "0" ]; then
-            echo "This script is designed for Centos7+"
-            exit 1
-        fi
-        if [[ $(echo "$linux_version < $CentOS_version" | bc) == 1 ]]; then
-            echo "This script is designed for CentOS 7 or later."
+        if [ `echo ${linux_version} | awk -v tem="8" '{print($1<tem)? "1":"0"}'` -eq "0" ]; then
+            echo "This script is designed for Centos8+"
             exit 1
         fi
     elif [ $(echo $linux_distribution | grep "Debian" &>/dev/null; echo $?) -eq 0  ] || [ $(echo $linux_distribution | grep "Ubuntu" &>/dev/null; echo $?) -eq 0 ]; then
