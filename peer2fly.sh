@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# maintainer: https://github.com/Chasing66/beautiful_docker/tree/main/peer2profit
+# maintainer: https://github.com/Chasing66/peer2profit
 
 function set_vps_swap() {
     # check whether swap is exist
