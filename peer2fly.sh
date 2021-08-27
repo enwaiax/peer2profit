@@ -3,16 +3,23 @@
 # maintainer: https://github.com/Chasing66/peer2profit
 
 function set_vps_swap() {
-    # check whether swap is exist
-    if [ -f /swapfile ]; then
-        echo "Swap file is exist. Begin to install"
+    # Set swap size as two times of RAM size automatically
+    if [ $(free | grep Swap | awk '{print $2}') -gt 0 ]; then
+        echo "Swap already enabled"
+        cat /proc/swaps
+        free -h
         return 0
     else
-        echo "Swap file is not exist"
-        echo "Create swap file"
-        wget -Nnv https://raw.githubusercontent.com/Chasing66/peer2profit/main/swap.sh &>/dev/null
-        chmod +x swap.sh
-        source swap.sh
+        echo "Swapfile not created. creating it."
+        mem_num=$(awk '($1 == "MemTotal:"){print $2/1024}' /proc/meminfo|sed "s/\..*//g"|awk '{print $1*2}')
+        fallocate -l ${mem_num}M /swapfile
+        chmod 600 /swapfile
+        mkswap /swapfile
+        swapon /swapfile
+        echo '/swapfile none swap defaults 0 0' >> /etc/fstab
+        echo "swapfile created."
+        cat /proc/swaps
+        free -h
     fi
 }
 
@@ -35,9 +42,18 @@ function parse_args() {
                 ;;
             *)
                 error "Unknown argument: $1"
+                display_help
                 exit 1
         esac
     done
+}
+
+function display_help() {
+    echo "Usage: $0 [--email <email>] [--number <number>]"
+    echo "  --email <email>    Email address to login"
+    echo "  --number <number>  Number of replicas to create"
+    echo "  --debug-output     Enable debug output"
+    echo "Example: $0 --email test@example.com --number 3"
 }
 
 function check_whether_root_user()
@@ -86,7 +102,8 @@ function install_docker_dockercompose() {
             echo "Docker install failed."
             exit 1
         fi
-        systemctl enable docker
+        systemctl enable docker || service docker start
+        rm get-docker.sh
     fi
     if which docker-compose >/dev/null; then
         echo "docker-compose has been installed, skipped"
@@ -115,7 +132,7 @@ function set_peer2profit_email()
         read -rp "Input your email: " email
     fi
     if [ -n "$email" ]; then
-        echo "You email is: $email"
+        echo "Your email is: $email"
         export email
         echo "email=$email" > .env
     else
@@ -130,7 +147,7 @@ function set_contaienr_replicas_numbers()
         read -rp "Input the container numbers you want to run: " replicas
     fi
     if [ -n "$replicas" ]; then
-        echo "You container numbers is: $replicas"
+        echo "Your container numbers is: $replicas"
         export replicas
         sed -i "s/replicas:.*/replicas: $replicas/g" docker-compose.yml
     else
@@ -149,9 +166,9 @@ function start_containers()
 
 function peer2fly()
 {   
-    set_vps_swap
     parse_args "$@"
     check_whether_root_user
+    set_vps_swap
     install_mandantory_packages
     install_docker_dockercompose
     download_compose_file
