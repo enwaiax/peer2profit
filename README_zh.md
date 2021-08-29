@@ -85,5 +85,5 @@ chmod +x peer2fly.sh
 [issues-shield]: https://img.shields.io/github/issues/Chasing66/peer2profit.svg?style=for-the-badge
 [issues-url]: https://github.com/Chasing66/peer2profit/issues
 [license-shield]: https://img.shields.io/github/license/Chasing66/peer2profit.svg?style=for-the-badge
-[license-url]: https://github.com/Chasing66/peer2profit/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[license-url]: https://github.com/Chasing66/peer2profit/blob/main/LICENSE
+
