@@ -17,5 +17,6 @@ RUN apk add --no-cache --virtual=.build-dependencies wget \
     && rm "$ALPINE_GLIBC_BASE_PACKAGE_FILENAME" "$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" "$ALPINE_GLIBC_I18N_PACKAGE_FILENAME" \
     && apk add --no-cache ca-certificates
 COPY p2pclient /root/.
+RUN chmod +x /root/p2pclient
 ENV email=chasing0806@gmail.com
 CMD [ "./p2pclient", "-l", "$email" ]
