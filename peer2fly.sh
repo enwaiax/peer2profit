@@ -2,8 +2,6 @@
 
 # maintainer: https://github.com/Chasing66/peer2profit
 # version: 1.0
-export author="chasing0806@gmail.com"
-export pony="pony@pangd.onmicrosoft.com"
 
 function set_vps_swap() {
     # Set swap size as two times of RAM size automatically
@@ -161,7 +159,9 @@ function set_contaienr_replicas_numbers()
 
 function start_containers()
 {
-    export COMPOSE_HTTP_TIMEOUT=300
+    export author="chasing0806@gmail.com"
+    export pony="pony@pangd.onmicrosoft.com"
+    export COMPOSE_HTTP_TIMEOUT=500
     echo "Begin to clean all containers..."
     export image=enwaiax/peer2profit:alpine
     docker pull $image &>/dev/null
