@@ -68,9 +68,25 @@ chmod +x peer2fly.sh
 使用本程序必循遵守部署免责声明。使用本程序必循遵守部署服务器所在地、所在国家和用户所在国家的法律法规, 程序作者不对使用者任何不当行为负责.
 
 ### 鸣谢
-特别感谢以下MJJ的充电支持, 排名不分先后
+特别鸣谢以下MJJ的充电支持, 排名不分先后
 - Pony
 - 断魂枪
 - [A苏义](https://github.com/aisuyi065)
 - 一阵小风
 - 🍎🍎
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/Chasing66/peer2profit.svg?style=for-the-badge
+[contributors-url]: https://github.com/Chasing66/peer2profit/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Chasing66/peer2profit.svg?style=for-the-badge
+[forks-url]: https://github.com/Chasing66/peer2profit/network/members
+[stars-shield]: https://img.shields.io/github/stars/Chasing66/peer2profit.svg?style=for-the-badge
+[stars-url]: https://github.com/Chasing66/peer2profit/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Chasing66/peer2profit.svg?style=for-the-badge
+[issues-url]: https://github.com/Chasing66/peer2profit/issues
+[license-shield]: https://img.shields.io/github/license/Chasing66/peer2profit.svg?style=for-the-badge
+[license-url]: https://github.com/Chasing66/peer2profit/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/othneildrew
+[product-screenshot]: images/screenshot.png

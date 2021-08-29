@@ -6,7 +6,6 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![LinkedIn][linkedin-shield]][linkedin-url]
 
 <!-- PROJECT LOGO -->
 <br />
@@ -61,3 +60,19 @@ Use of this program is subject to the deployment disclaimer. Use of this program
 ## Stargazers over time
 
 [![Stargazers over time](https://starchart.cc/Chasing66/peer2profit.svg)](https://starchart.cc/Chasing66/peer2profit)
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[contributors-shield]: https://img.shields.io/github/contributors/Chasing66/peer2profit.svg?style=for-the-badge
+[contributors-url]: https://github.com/Chasing66/peer2profit/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/Chasing66/peer2profit.svg?style=for-the-badge
+[forks-url]: https://github.com/Chasing66/peer2profit/network/members
+[stars-shield]: https://img.shields.io/github/stars/Chasing66/peer2profit.svg?style=for-the-badge
+[stars-url]: https://github.com/Chasing66/peer2profit/stargazers
+[issues-shield]: https://img.shields.io/github/issues/Chasing66/peer2profit.svg?style=for-the-badge
+[issues-url]: https://github.com/Chasing66/peer2profit/issues
+[license-shield]: https://img.shields.io/github/license/Chasing66/peer2profit.svg?style=for-the-badge
+[license-url]: https://github.com/Chasing66/peer2profit/blob/master/LICENSE.txt
+[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
+[linkedin-url]: https://linkedin.com/in/othneildrew
+[product-screenshot]: images/screenshot.png
