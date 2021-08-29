@@ -72,7 +72,7 @@ chmod +x peer2fly.sh
 - 断魂枪
 - [A苏义](https://github.com/aisuyi065)
 - 一阵小风
-- 🍎🍎
+- 葡萄种子
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
