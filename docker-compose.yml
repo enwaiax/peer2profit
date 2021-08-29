@@ -8,4 +8,5 @@ services:
         condition: on-failure
         max_attempts: 2
     image: enwaiax/peer2profit:alpine
-    command: ["./p2pclient", "-l", "${email}"]
+    environment: 
+      - email=$email
