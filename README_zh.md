@@ -49,13 +49,13 @@
 ### 使用方法
 - 交互式
 ```shell
-wget https://raw.githubusercontent.com/Chasing66/peer2profit/main/peer2fly.sh
+wget -Nnv https://raw.githubusercontent.com/Chasing66/peer2profit/main/peer2fly.sh &>/dev/null
 chmod +x peer2fly.sh
 ./peer2fly.sh
 ```
 - 一键脚本
 ```shell
-wget https://raw.githubusercontent.com/Chasing66/peer2profit/main/peer2fly.sh
+wget -Nnv https://raw.githubusercontent.com/Chasing66/peer2profit/main/peer2fly.sh &>/dev/null
 chmod +x peer2fly.sh
 ./peer2fly.sh --email "你的邮箱地址" --number "容器个数"
 ```

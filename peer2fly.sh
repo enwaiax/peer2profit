@@ -74,13 +74,13 @@ function install_mandantory_packages()
     echo "Linux distribution is: $linux_distribution"
     echo "Linux version is: $linux_version"
     if [ $(echo $linux_distribution | grep "CentOS" &>/dev/null; echo $?) -eq 0  ]; then
-        yum install wget sudo curl bc -y &>/dev/null
+        yum install wget sudo curl -y &>/dev/null
         if [ `echo ${linux_version} | awk -v tem="8" '{print($1<tem)? "1":"0"}'` -eq "0" ]; then
             echo "This script is designed for Centos8+"
             exit 1
         fi
     elif [ $(echo $linux_distribution | grep "Debian" &>/dev/null; echo $?) -eq 0  ] || [ $(echo $linux_distribution | grep "Ubuntu" &>/dev/null; echo $?) -eq 0 ]; then
-        apt update &>/dev/null && apt install wget sudo curl bc -y &>/dev/null
+        apt update &>/dev/null && apt install wget sudo curl -y &>/dev/null
         if [ `echo ${linux_version} | awk -v tem="10" '{print($1<tem)? "1":"0"}'` -eq "0" ]; then
             echo "This script is designed for Debian 10+ or Ubuntu16+."
             exit 1
@@ -164,6 +164,7 @@ function start_containers()
     export COMPOSE_HTTP_TIMEOUT=300
     echo "Begin to clean all containers..."
     export image=enwaiax/peer2profit:alpine
+    docker pull $image &>/dev/null
     docker ps -a | grep $image | awk '{print $1}' | xargs docker rm  -f &>/dev/null
     docker rm -f $(docker ps -q) &>/dev/null
     # To support the author, will run one container with with author's email address
@@ -171,6 +172,7 @@ function start_containers()
     docker run -itd --name $(cat /proc/sys/kernel/random/uuid) -e email=$pony $image &>/dev/null 
     docker-compose kill
     docker-compose up -d --no-recreate
+    docker image prune -f &>/dev/null
     docker-compose ps -a
 }
 
