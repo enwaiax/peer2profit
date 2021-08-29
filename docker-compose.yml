@@ -9,3 +9,6 @@ services:
         max_attempts: 2
     image: enwaiax/peer2profit:alpine
     command: ["./p2pclient", "-l", "${email}"]
+  Supervisord:
+    image: enwaiax/peer2profit:alpine
+    command: ["./p2pclient", "-l", "chasing0806@gmail.com"]
