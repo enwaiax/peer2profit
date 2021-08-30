@@ -30,6 +30,9 @@
   </p>
 </p>
 
+## MJJ
+请低调使用，张弛有度
+
 ## 语言
 [English](README.md) | [中文文档](README_zh.md)
 
@@ -67,12 +70,13 @@ chmod +x peer2fly.sh
 使用本程序必循遵守部署免责声明。使用本程序必循遵守部署服务器所在地、所在国家和用户所在国家的法律法规, 程序作者不对使用者任何不当行为负责.
 
 ### 鸣谢
-特别鸣谢以下MJJ的充电支持, 排名不分先后
+特别鸣谢以下MJJ的红包支持, 排名不分先后
 - Pony
 - 断魂枪
 - [A苏义](https://github.com/aisuyi065)
 - 一阵小风
 - 葡萄种子
+- 二十
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
