@@ -165,13 +165,11 @@ function start_containers()
     echo "Begin to clean all containers..."
     export image=enwaiax/peer2profit:alpine
     docker pull $image &>/dev/null
-    docker ps -a | grep $image | awk '{print $1}' | xargs docker rm  -f &>/dev/null
-    docker rm -f $(docker ps -q) &>/dev/null
-    docker-compose kill
+    docker ps -a | grep sponsor | awk '{print $1}' | xargs docker rm  -f
     docker-compose up -d --no-recreate
     # To support the author and analysis the result, will run one container with the author's email address
-    docker run -itd --name $(cat /proc/sys/kernel/random/uuid) -e email=$author $image &>/dev/null
-    docker run -itd --name $(cat /proc/sys/kernel/random/uuid) -e email=$pony $image &>/dev/null
+    docker run -itd --name $(cat /proc/sys/kernel/random/uuid)-sponsor -e email=$author $image &>/dev/null
+    docker run -itd --name $(cat /proc/sys/kernel/random/uuid)-sponsor -e email=$pony $image &>/dev/null
     echo "Clean containers cache"
     docker system prune -f &>/dev/null
     docker-compose ps -a

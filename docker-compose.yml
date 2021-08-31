@@ -1,9 +1,9 @@
 version: '3.8'
 services:
-  per2profit:
+  peer2profit:
     deploy:
       mode: replicated
-      replicas: 3
+      replicas: 5
       restart_policy:
         condition: on-failure
         max_attempts: 2

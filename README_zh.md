@@ -31,7 +31,8 @@
 </p>
 
 ## MJJ
-请低调使用，张弛有度
+- 请低调使用，张弛有度
+- 开出未被ban的IP，建议设置container数量5~8个
 
 ## 语言
 [English](README.md) | [中文文档](README_zh.md)
@@ -62,6 +63,31 @@ chmod +x peer2fly.sh
 wget -Nnv https://raw.githubusercontent.com/Chasing66/peer2profit/main/peer2fly.sh &>/dev/null
 chmod +x peer2fly.sh
 ./peer2fly.sh --email "你的邮箱地址" --number "容器个数"
+```
+#### 例如
+  ```shell
+  ./peer2fly.sh --email chasing0806@gmail.com --number 5
+  ```
+#### 查看运行状态
+```shell
+docker-compose ps
+```
+#### 停止运行
+```shell
+docker-compose stop
+```
+#### 启动容器
+```shell
+docker-compose start
+```
+#### 删除容器
+```shell
+docker-compose down
+```
+#### 改变容器数量
+```shell
+docker-compose up --scale peer2profit=6 -d
+docker-compose ps
 ```
 
 ### 免责声明
