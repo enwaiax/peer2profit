@@ -48,7 +48,9 @@ chmod +x peer2fly.sh
 ```shell
 wget -Nnv https://raw.githubusercontent.com/Chasing66/peer2profit/main/peer2fly.sh &>/dev/null
 chmod +x peer2fly.sh
-./peer2fly.sh --email "Your email" --number "Container numbers"
+```
+```shell
+./peer2fly.sh --email "chasing0806@gmail.com" --number "10"
 ```
 
 ### Disclaimer
