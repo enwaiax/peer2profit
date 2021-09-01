@@ -24,9 +24,9 @@
   <h3 align="center">Docker image for Peer2Profit</h3>
   <p align="center">分享闲置带宽获得利润</p>
   <p align="center">
-    <a href="https://github.com/Chasing66/peer2profit">Github</a>
+    <a href="https://github.com/Chasing66/peer2profit" target="_blank">Github</a>
     |
-    <a href="https://hub.docker.com/r/enwaiax/peer2profit">Docker Hub</a>
+    <a href="https://hub.docker.com/r/enwaiax/peer2profit" target="_blank">Docker Hub</a>
   </p>
 </p>
 
