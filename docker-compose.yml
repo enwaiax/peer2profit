@@ -2,11 +2,19 @@ version: '3.8'
 services:
   peer2profit:
     deploy:
-      mode: replicated
       replicas: 5
       restart_policy:
         condition: on-failure
         max_attempts: 2
+      resources:
+        limits:
+          cpus: "0.1"
+          memory: '30M'
     image: enwaiax/peer2profit:alpine
-    environment: 
+    environment:
       - email=$email
+    logging: 
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "1"
