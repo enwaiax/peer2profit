@@ -1,4 +1,4 @@
-FROM debian:10-slim
+FROM debian:11-slim
 LABEL org.opencontainers.image.authors="<chasing0806@gmail.com>"
 RUN apt-get update && apt-get install ca-certificates -y
 WORKDIR /root
@@ -6,4 +6,4 @@ WORKDIR /root
 COPY p2pclient /root/.
 RUN chmod +x p2pclient
 ENV email=chasing0806@gmail.com
-ENTRYPOINT [ "/bin/bash", "-c", "/app/p2pclient -l ${email}" ]
+ENTRYPOINT [ "/bin/bash", "-c", "/root/p2pclient -l ${email}" ]
