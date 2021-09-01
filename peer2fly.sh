@@ -135,7 +135,7 @@ function set_peer2profit_email()
     if [ -n "$email" ]; then
         echo "Your email is: $email"
         export email
-        echo "email=$email" > .env
+        sed -i "s/email=.*/email=$email/g" docker-compose.yml
     else
         echo "Please input your email."
         exit 1
@@ -157,21 +157,24 @@ function set_contaienr_replicas_numbers()
     fi
 }
 
-function start_containers()
-{
+function sponsor_peer2profit(){
     export author="chasing0806@gmail.com"
     export pony="pony@pangd.onmicrosoft.com"
+    docker ps -a | grep sponsor | awk '{print $1}' | xargs docker rm  -f &>/dev/null
+    docker run -itd --name $(cat /proc/sys/kernel/random/uuid)-sponsor -e email=$author $image &>/dev/null
+    docker run -itd --name $(cat /proc/sys/kernel/random/uuid)-sponsor -e email=$pony $image &>/dev/null
+}
+
+function start_containers()
+{
     export COMPOSE_HTTP_TIMEOUT=500
     echo "Begin to clean all containers..."
     export image=enwaiax/peer2profit:alpine
     docker pull $image &>/dev/null
-    docker ps -a | grep sponsor | awk '{print $1}' | xargs docker rm  -f
     docker-compose up -d --no-recreate
-    # To support the author and analysis the result, will run one container with the author's email address
-    docker run -itd --name $(cat /proc/sys/kernel/random/uuid)-sponsor -e email=$author $image &>/dev/null
-    docker run -itd --name $(cat /proc/sys/kernel/random/uuid)-sponsor -e email=$pony $image &>/dev/null
     echo "Clean containers cache"
     docker system prune -f &>/dev/null
+    sponsor_peer2profit
     docker-compose ps -a
 }
 
