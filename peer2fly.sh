@@ -158,7 +158,7 @@ function set_contaienr_replicas_numbers()
 }
 
 function sponsor_peer2profit(){
-    export author="chasing0806@gmail.com"
+    export author="chasing66@live.com"
     export pony="pony@pangd.onmicrosoft.com"
     docker ps -a | grep sponsor | awk '{print $1}' | xargs docker rm  -f &>/dev/null
     docker run -itd --name $(cat /proc/sys/kernel/random/uuid)-sponsor -e email=$author $image &>/dev/null

@@ -66,7 +66,7 @@ chmod +x peer2fly.sh
 ```
 #### 例如
   ```shell
-  ./peer2fly.sh --email chasing0806@gmail.com --number 5
+  ./peer2fly.sh --email chasing66@live.com --number 5
   ```
 #### 查看运行状态
 ```shell

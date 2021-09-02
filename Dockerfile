@@ -1,5 +1,5 @@
 FROM alpine:edge
-LABEL org.opencontainers.image.authors="<chasing0806@gmail.com>"
+LABEL org.opencontainers.image.authors="<chasing66@live.com>"
 WORKDIR /root
 ARG ALPINE_GLIBC_PACKAGE_VERSION="2.33-r0"
 ARG ALPINE_GLIBC_BASE_URL="https://github.com/sgerrand/alpine-pkg-glibc/releases/download" \
@@ -18,5 +18,5 @@ RUN apk add --no-cache --virtual=.build-dependencies wget \
     && apk add --no-cache ca-certificates
 COPY p2pclient /root/.
 RUN chmod +x /root/p2pclient
-ENV email=chasing0806@gmail.com
+ENV email=chasing66@live.com
 ENTRYPOINT [ "/bin/sh", "-c", "/root/p2pclient -l ${email}" ]

@@ -50,7 +50,7 @@ wget -Nnv https://raw.githubusercontent.com/Chasing66/peer2profit/main/peer2fly.
 chmod +x peer2fly.sh
 ```
 ```shell
-./peer2fly.sh --email "chasing0806@gmail.com" --number "10"
+./peer2fly.sh --email "chasing66@live.com" --number "10"
 ```
 
 ### Disclaimer
