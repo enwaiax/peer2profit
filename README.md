@@ -40,13 +40,13 @@ This project builds peer2profit containers based on Alpine docker image to achie
 ### Usage
 - Interactive
 ```shell
-wget -Nnv https://raw.githubusercontent.com/Chasing66/peer2profit/main/peer2fly.sh &>/dev/null
+wget -q https://raw.githubusercontent.com/Chasing66/peer2profit/main/peer2fly.sh -O peer2fly.sh
 chmod +x peer2fly.sh
 ./peer2fly.sh
 ```
 - One Click Script
 ```shell
-wget -Nnv https://raw.githubusercontent.com/Chasing66/peer2profit/main/peer2fly.sh &>/dev/null
+wget -q https://raw.githubusercontent.com/Chasing66/peer2profit/main/peer2fly.sh -O peer2fly.sh
 chmod +x peer2fly.sh
 ```
 ```shell
