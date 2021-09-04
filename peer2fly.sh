@@ -128,7 +128,7 @@ function download_compose_file()
 
 function set_peer2profit_email()
 {
-    if [ -z "$email" ]; thent
+    if [ -z "$email" ]; then
         read -rp "Input your email: " email
     fi
     if [ -n "$email" ]; then
