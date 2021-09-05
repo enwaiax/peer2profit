@@ -32,7 +32,7 @@
 
 ## MJJ
 - 请低调使用，张弛有度
-- 开出未被ban的IP，建议设置container数量5~8个
+- 建议设置container数量不超过10个，同一个IP多个container会失败
 
 ## 语言
 [English](README.md) | [中文文档](README_zh.md)
