@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  peer2profit:
+  p2p:
     deploy:
       replicas: 5
       restart_policy:
@@ -10,7 +10,7 @@ services:
         limits:
           cpus: "0.1"
           memory: '30M'
-    image: enwaiax/peer2profit:alpine
+    image: enwaiax/peer2profit:latest
     environment:
       - email=$email
     logging: 

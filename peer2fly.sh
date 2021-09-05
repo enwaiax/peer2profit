@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # maintainer: https://github.com/Chasing66/peer2profit
-# version: 1.0
+# version: 1.1
 
 function set_vps_swap() {
     # Set swap size as two times of RAM size automatically
@@ -169,7 +169,7 @@ function start_containers()
 {
     export COMPOSE_HTTP_TIMEOUT=500
     echo "Begin to clean all containers..."
-    export image=enwaiax/peer2profit:alpine
+    export image=enwaiax/peer2profit:latest
     docker pull $image &>/dev/null
     docker-compose up -d --no-recreate
     echo "Clean containers cache"
