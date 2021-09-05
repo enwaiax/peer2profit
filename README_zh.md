@@ -52,16 +52,19 @@
 
 
 ### 使用方法
+1. 下载脚本
+```shell
+mkdir -p peer2profit && cd peer2profit
+wget -q https://raw.githubusercontent.com/Chasing66/peer2profit/main/peer2fly.sh -O peer2fly.sh
+chmod +x peer2fly.sh
+```
+2. 执行脚本
 - 交互式
 ```shell
-wget -q https://raw.githubusercontent.com/Chasing66/peer2profit/main/peer2fly.sh -O peer2fly.sh
-chmod +x peer2fly.sh
 ./peer2fly.sh
 ```
-- 一键脚本
+- 一键
 ```shell
-wget -q https://raw.githubusercontent.com/Chasing66/peer2profit/main/peer2fly.sh -O peer2fly.sh
-chmod +x peer2fly.sh
 ./peer2fly.sh --email "你的邮箱地址" --number "容器个数"
 ```
 #### 例如
