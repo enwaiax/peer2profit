@@ -1,4 +1,4 @@
-FROM alpine:latest
+FROM alpine:edge
 LABEL org.opencontainers.image.authors="<chasing66@live.com>"
 WORKDIR /root
 ARG ALPINE_GLIBC_PACKAGE_VERSION="2.34-r0"
