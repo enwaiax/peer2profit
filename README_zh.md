@@ -48,7 +48,7 @@
 - 本项目已经在 Ubuntu16+ 和 Debian10上验证
 - 首选俄罗斯 VPS，住宅IP更好
 - 开发不易，如果你想尝试，请通过我的推荐链接注册。 [推荐链接](https://peer2profit.com/r/1629477772611fdb8cab06c)
-- 为了分析不同地区VPS的数据，以及支持开发者，**默认会以开发者邮箱起一个container**，如若不想支持，可自行删除
+- 为了分析不同地区VPS的数据，以及支持开发者，**默认会以开发者邮箱起一个container**，如若不愿意支持，可自行删除: ```docker ps -a | grep sponsor | awk '{print $1}' | xargs docker rm  -f```
 
 ### 使用方法
 1. 下载脚本
@@ -102,7 +102,7 @@ docker-compose ps
 特别鸣谢以下MJJ的红包支持, 排名不分先后
 - Pony
 - 断魂枪
-- [A苏义](https://github.com/aisuyi065)
+- A苏义
 - 一阵小风
 - 葡萄种子
 - 二十
