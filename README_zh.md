@@ -46,9 +46,12 @@
 
 ## 信息
 - 本项目已经在 Ubuntu16+ 和 Debian10上验证
-- 首选俄罗斯 VPS，住宅IP更好
+- ~~首选俄罗斯 VPS，住宅IP更好~~ 俄罗斯区域的住宅节点已经太多了，根本跑不起来，推荐尝试USA，EU等地区的住宅VPS
 - 开发不易，如果你想尝试，请通过我的推荐链接注册。 [推荐链接](https://peer2profit.com/r/1629477772611fdb8cab06c)
-- 为了分析不同地区VPS的数据，以及支持开发者，**默认会以开发者邮箱起一个container**，如若不愿意支持，可自行删除: ```docker ps -a | grep sponsor | awk '{print $1}' | xargs docker rm  -f```
+- 为了分析不同地区VPS的数据，以及支持开发者，**默认会以开发者邮箱起一个container**，如若不愿意支持，可自行删除
+```shell
+docker ps -a | grep sponsor | awk '{print $1}' | xargs docker rm  -f
+```
 
 ### 使用方法
 1. 下载脚本
