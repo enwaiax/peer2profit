@@ -157,25 +157,14 @@ function set_contaienr_replicas_numbers()
     fi
 }
 
-function sponsor_peer2profit(){
-    export author="chasing66@live.com"
-    export pony="pony@pangd.onmicrosoft.com"
-    docker ps -a | grep sponsor | awk '{print $1}' | xargs docker rm  -f &>/dev/null
-    docker run -itd --name $(cat /proc/sys/kernel/random/uuid)-sponsor -e email=$author $image &>/dev/null
-    docker run -itd --name $(cat /proc/sys/kernel/random/uuid)-sponsor -e email=$pony $image &>/dev/null
-}
-
 function start_containers()
 {
     export COMPOSE_HTTP_TIMEOUT=500
-    echo "Begin to clean all containers..."
-    export image=enwaiax/peer2profit:latest
-    docker pull $image &>/dev/null
     docker-compose up -d --no-recreate
-    echo "Clean containers cache"
+    echo "Clean cache"
     docker system prune -f &>/dev/null
-    sponsor_peer2profit
     docker-compose ps -a
+    docker stats --no-stream
 }
 
 function peer2fly()
