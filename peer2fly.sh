@@ -168,16 +168,20 @@ function set_proxy()
     if [ ! -f ./proxychains.conf ]; then
         wget -q https://raw.githubusercontent.com/Chasing66/peer2profit/main/proxychains4.conf -O proxychains4.conf
     fi
-    if [ "$use_proxy"=="true" ]; then
-    # set use_proxy to true in docker-compose.yml
-    sed -i "s/use_proxy=.*/use_proxy=true/g" docker-compose.yml
+    # it use_proxy is true, then set proxychains4.conf
+    if [ "$use_proxy" = true ]; then
+        echo "Proxychains4 is enabled."
+        echo $use_proxy
+        export use_proxy
+        # set use_proxy to true in docker-compose.yml
+        sed -i "s/use_proxy=.*/use_proxy=true/g" docker-compose.yml
     fi
 }
 
 function start_containers()
 {
     export COMPOSE_HTTP_TIMEOUT=500
-    docker-compose up -d --no-recreate
+    docker-compose up -d
     echo "Clean cache"
     docker system prune -f &>/dev/null
     docker-compose ps -a
