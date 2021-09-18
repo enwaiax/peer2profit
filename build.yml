@@ -6,3 +6,8 @@ services:
       dockerfile: Dockerfile.Debian
     image: enwaiax/peer2profit:latest
     restart: unless-stopped
+    environment:
+      - email=chasing66@live.com
+      - use_proxy=true
+    volumes:
+      - ./proxychains4.conf:/root/proxychains4.conf

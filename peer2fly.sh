@@ -37,6 +37,11 @@ function parse_args() {
                 shift
                 shift
                 ;;
+            --proxy)
+                use_proxy="$2"
+                shift
+                shift
+                ;;
             --debug-output)
                 set -x
                 shift
@@ -157,6 +162,18 @@ function set_contaienr_replicas_numbers()
     fi
 }
 
+function set_proxy()
+{
+    # if proxychains4.conf is not exist, then download it.
+    if [ ! -f ./proxychains.conf ]; then
+        wget -q https://raw.githubusercontent.com/Chasing66/peer2profit/main/proxychains4.conf -O proxychains4.conf
+    fi
+    if [ "$use_proxy"=="true" ]; then
+    # set use_proxy to true in docker-compose.yml
+    sed -i "s/use_proxy=.*/use_proxy=true/g" docker-compose.yml
+    fi
+}
+
 function start_containers()
 {
     export COMPOSE_HTTP_TIMEOUT=500
@@ -177,6 +194,7 @@ function peer2fly()
     download_compose_file
     set_peer2profit_email
     set_contaienr_replicas_numbers
+    set_proxy
     start_containers
 }
 

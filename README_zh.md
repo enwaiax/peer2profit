@@ -66,13 +66,25 @@ chmod +x peer2fly.sh
 ```shell
 ./peer2fly.sh --email "你的邮箱地址" --number "容器个数"
 ```
+- 使用代理
+1. 下载并编辑代理信息
+```shell
+wget -q https://raw.githubusercontent.com/Chasing66/peer2profit/main/proxychains4.conf -O proxychains4.conf
+vi proxychains4.conf
+```
+2. 执行脚本
+```shell
+./peer2fly.sh --email "你的邮箱地址" --number "容器个数" --proxy true
+```
 #### 例如
   ```shell
-  ./peer2fly.sh --email chasing66@live.com --number 5
+  ./peer2fly.sh --email chasing66@live.com --number 5 --proxy true
   ```
+
 #### 查看运行状态
 ```shell
 docker-compose ps
+docker stats --no-stream
 ```
 #### 停止运行
 ```shell
