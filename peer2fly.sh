@@ -165,13 +165,15 @@ function set_contaienr_replicas_numbers()
 function set_proxy()
 {
     # if proxychains4.conf is not exist, then download it.
-    if [ ! -f ./proxychains.conf ]; then
+    if [ ! -f ./proxychains4.conf ]; then
+        echo "no proxychains4.conf found, downloading..."
         wget -q https://raw.githubusercontent.com/Chasing66/peer2profit/main/proxychains4.conf -O proxychains4.conf
+    else
+        echo "proxychains4.conf found, skipped"
     fi
     # it use_proxy is true, then set proxychains4.conf
     if [ "$use_proxy" = true ]; then
         echo "Proxychains4 is enabled."
-        echo $use_proxy
         export use_proxy
         # set use_proxy to true in docker-compose.yml
         sed -i "s/use_proxy=.*/use_proxy=true/g" docker-compose.yml
