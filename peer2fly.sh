@@ -183,6 +183,7 @@ function set_proxy()
 function start_containers()
 {
     export COMPOSE_HTTP_TIMEOUT=500
+    docker-compose pull
     docker-compose up -d
     echo "Clean cache"
     docker system prune -f &>/dev/null

@@ -1,9 +1,10 @@
 FROM debian:11-slim
 LABEL org.opencontainers.image.authors="<chasing66@live.com>"
+WORKDIR /root
+COPY entrypoint.sh /root/
+RUN chmod +x entrypoint.sh
 RUN apt-get update && apt-get install -y --no-install-recommends ca-certificates procps proxychains4 \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-WORKDIR /root
-# ADD https://updates.peer2profit.com/p2pclient /app/
-COPY p2pclient entrypoint.sh /root/
-RUN chmod +x p2pclient entrypoint.sh
+ADD https://updates.peer2profit.com/p2pclient_0.54_amd64.deb /root/p2pclient_0.54_amd64.deb
+RUN dpkg -i /root/p2pclient_0.54_amd64.deb && rm -rf /root/p2pclient_0.54_amd64.deb
 ENTRYPOINT ["/root/entrypoint.sh"]
