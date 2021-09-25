@@ -21,6 +21,5 @@ services:
       driver: "local"
       options:
         max-size: "1m"
-        max-file: "1"
     volumes:
       - ./proxychains4.conf:/root/proxychains4.conf
