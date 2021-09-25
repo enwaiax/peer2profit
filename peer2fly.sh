@@ -175,6 +175,7 @@ function set_image_version()
         sed -i "s/image:.*/image: enwaiax/peer2profit:$version/g" docker-compose.yml
     else
         echo "Will use defalut version: enwaiax/peer2profit:latest"
+    fi
 }
 
 function set_proxy()
