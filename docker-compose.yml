@@ -11,11 +11,14 @@ services:
           cpus: "0.15"
           memory: '35M'
     image: enwaiax/peer2profit:latest
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
     environment:
       - email=$email
       - use_proxy=false
     logging: 
-      driver: json-file
+      driver: "local"
       options:
         max-size: "1m"
         max-file: "1"

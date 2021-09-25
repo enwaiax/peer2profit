@@ -37,6 +37,11 @@ function parse_args() {
                 shift
                 shift
                 ;;
+            --version)
+                use_proxy="$2"
+                shift
+                shift
+                ;;
             --proxy)
                 use_proxy="$2"
                 shift
@@ -162,6 +167,16 @@ function set_contaienr_replicas_numbers()
     fi
 }
 
+function set_image_version()
+{
+    if [ -n "$version" ]; then
+        echo "Will use version: enwaiax/peer2profit:$version"
+        export version
+        sed -i "s/image:.*/image: enwaiax/peer2profit:$version/g" docker-compose.yml
+    else
+        echo "Will use defalut version: enwaiax/peer2profit:latest"
+}
+
 function set_proxy()
 {
     # if proxychains4.conf is not exist, then download it.
@@ -201,6 +216,7 @@ function peer2fly()
     download_compose_file
     set_peer2profit_email
     set_contaienr_replicas_numbers
+    set_image_version
     set_proxy
     start_containers
 }
