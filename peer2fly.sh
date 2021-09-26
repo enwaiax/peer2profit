@@ -38,7 +38,7 @@ function parse_args() {
                 shift
                 ;;
             --version)
-                use_proxy="$2"
+                version="$2"
                 shift
                 shift
                 ;;
@@ -170,8 +170,8 @@ function set_contaienr_replicas_numbers()
 function set_image_version()
 {
     if [ -n "$version" ]; then
-        echo "Will use version: enwaiax/peer2profit:$version"
         export version
+        echo "Will use version: enwaiax/peer2profit:$version"
         sed -i "s/image:.*/image: enwaiax/peer2profit:$version/g" docker-compose.yml
     else
         echo "Will use defalut version: enwaiax/peer2profit:latest"

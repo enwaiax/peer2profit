@@ -13,6 +13,8 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
+[![Docker Stars][docker-stars-shield]][docker-stars-url]
+[![Docker Pulls][docker-pulls-shield]][docker-pulls-url]
 
 <!-- PROJECT LOGO -->
 <br />
@@ -30,9 +32,6 @@
   </p>
 </p>
 
-## MJJ
-- 请低调使用，张弛有度
-- 建议设置container数量不超过10个，同一个IP多个container会失败
 
 ## 语言
 [English](README.md) | [中文文档](README_zh.md)
@@ -46,9 +45,9 @@
 
 ## 信息
 - 本项目已经在 Ubuntu16+ 和 Debian10上验证
-- ~~首选俄罗斯 VPS，住宅IP更好~~ 俄罗斯区域的住宅节点已经太多了，根本跑不起来，推荐尝试USA，EU等地区的住宅VPS
+- 优先推荐住宅IP
 - 开发不易，如果你想尝试，请通过我的推荐链接注册。 [推荐链接](https://peer2profit.com/r/1629477772611fdb8cab06c)
-- ~~为了分析不同地区VPS的数据，以及支持开发者，**默认会以开发者邮箱起一个container**~~ 已移除
+
 
 ### 使用方法
 1. 下载脚本
@@ -67,7 +66,7 @@ chmod +x peer2fly.sh
 ./peer2fly.sh --email "你的邮箱地址" --number "容器个数"
 ```
 - 使用代理
-1. 下载并编辑代理信息
+1. 编辑配置文件 proxychains4.conf
 ```shell
 wget -q https://raw.githubusercontent.com/Chasing66/peer2profit/main/proxychains4.conf -O proxychains4.conf
 vi proxychains4.conf
@@ -110,6 +109,10 @@ docker-compose ps
 
 使用本程序必循遵守部署免责声明。使用本程序必循遵守部署服务器所在地、所在国家和用户所在国家的法律法规, 程序作者不对使用者任何不当行为负责.
 
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/Chasing66/peer2profit.svg)](https://starchart.cc/Chasing66/peer2profit)
+
 ### 鸣谢
 特别鸣谢以下MJJ的红包支持, 排名不分先后
 - Pony
@@ -132,4 +135,7 @@ docker-compose ps
 [issues-url]: https://github.com/Chasing66/peer2profit/issues
 [license-shield]: https://img.shields.io/github/license/Chasing66/peer2profit.svg?style=for-the-badge
 [license-url]: https://github.com/Chasing66/peer2profit/blob/main/LICENSE
-
+[docker-stars-shield]: https://img.shields.io/docker/stars/enwaiax/peer2profit.svg?style=for-the-badge
+[docker-stars-url]: https://hub.docker.com/r/enwaiax/peer2profit
+[docker-pulls-shield]: https://img.shields.io/docker/pulls/enwaiax/peer2profit.svg?style=for-the-badge
+[docker-pulls-url]: https://hub.docker.com/r/enwaiax/peer2profit

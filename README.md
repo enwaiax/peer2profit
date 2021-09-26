@@ -6,6 +6,8 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
+[![Docker Stars][docker-stars-shield]][docker-stars-url]
+[![Docker Pulls][docker-pulls-shield]][docker-pulls-url]
 
 <!-- PROJECT LOGO -->
 <br />
@@ -75,3 +77,7 @@ Use of this program is subject to the deployment disclaimer. Use of this program
 [issues-url]: https://github.com/Chasing66/peer2profit/issues
 [license-shield]: https://img.shields.io/github/license/Chasing66/peer2profit.svg?style=for-the-badge
 [license-url]: https://github.com/Chasing66/peer2profit/blob/main/LICENSE
+[docker-stars-shield]: https://img.shields.io/docker/stars/enwaiax/peer2profit.svg?style=for-the-badge
+[docker-stars-url]: https://hub.docker.com/r/enwaiax/peer2profit
+[docker-pulls-shield]: https://img.shields.io/docker/pulls/enwaiax/peer2profit.svg?style=for-the-badge
+[docker-pulls-url]: https://hub.docker.com/r/enwaiax/peer2profit
