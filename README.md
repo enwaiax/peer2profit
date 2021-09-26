@@ -54,6 +54,17 @@ chmod +x peer2fly.sh
 ./peer2fly.sh --email "chasing66@live.com" --number "10"
 ```
 
+- Install as a service on Ubuntu/Debian system
+```shell
+bash <(curl --fsSL git.io/p2p-service.sh)
+```
+
+### Generate short link
+- example:
+```shell
+curl -i https://git.io -F "url=https://raw.githubusercontent.com/Chasing66/peer2profit/main/p2p-service.sh"  -F "code=p2p-service.sh"
+```
+
 ### Disclaimer
 
 This program is for learning purposes only, not for profit, please delete it within 24 hours after downloading, not for any commercial use. The text, data and images are copyrighted, if reproduced, please indicate the source.
