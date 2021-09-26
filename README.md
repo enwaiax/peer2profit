@@ -6,7 +6,6 @@
 [![Stargazers][stars-shield]][stars-url]
 [![Issues][issues-shield]][issues-url]
 [![MIT License][license-shield]][license-url]
-[![Docker Stars][docker-stars-shield]][docker-stars-url]
 [![Docker Pulls][docker-pulls-shield]][docker-pulls-url]
 
 <!-- PROJECT LOGO -->
