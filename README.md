@@ -56,7 +56,7 @@ chmod +x peer2fly.sh
 
 - Install as a service on Ubuntu/Debian system
 ```shell
-bash <(curl --fsSL git.io/p2p-service.sh)
+bash <(curl -fsSL git.io/JzDdQ)
 ```
 
 ### Generate short link
