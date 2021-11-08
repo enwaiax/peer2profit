@@ -23,14 +23,6 @@ jobs:
         with:
           string: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}
 
-      - name: Build and push with alpine tag
-        uses: docker/build-push-action@v2
-        with:
-          context: ./Dockerfile.alpine
-          platforms: linux/amd64
-          push: true
-          tags: ${{ steps.string.outputs.lowercase }}:alpine
-
       - name: Build and push with latest tag
         uses: docker/build-push-action@v2
         with:
@@ -38,6 +30,14 @@ jobs:
           platforms: linux/amd64
           push: true
           tags: ${{ steps.string.outputs.lowercase }}:latest
+
+      - name: Build and push with alpine tag
+        uses: docker/build-push-action@v2
+        with:
+          file: ./Dockerfile.alpine
+          platforms: linux/amd64
+          push: true
+          tags: ${{ steps.string.outputs.lowercase }}:alpine
 
       - name: Sync README.md
         uses: ms-jpq/sync-dockerhub-readme@v1
