@@ -3,11 +3,11 @@ services:
   p2p:
     build:
       context: .
-      dockerfile: Dockerfile.Debian
+      dockerfile: Dockerfile.alpine
     image: enwaiax/peer2profit:latest
     restart: unless-stopped
     environment:
       - email=chasing66@live.com
-      - use_proxy=true
+      - use_proxy=false
     volumes:
       - ./proxychains4.conf:/root/proxychains4.conf
