@@ -16,7 +16,7 @@ function install_dependencies() {
 
 function install_p2p_service() {
     echo "Installing p2p-service..."
-    wget https://updates.peer2profit.com/p2pclient_0.54_amd64.deb
+    wget https://updates.peer2profit.com/p2pclient_0.56_amd64.deb
     dpkg -i p2pclient_0.54_amd64.deb
     rm -f p2pclient_0.54_amd64.deb
 }
