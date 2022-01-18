@@ -11,24 +11,24 @@ plain='\033[0m'
 function set_vps_swap() {
     # Skip if the virtualization is openVZ
     if [[ -d /proc/vz ]]; then
-        echo "${green}OpenVZ virtualization detected, skipping add swap${plain}"
+        echo -e "${green}OpenVZ virtualization detected, skipping add swap${plain}"
         return
     fi
     # Set swap size as two times of RAM size automatically
     if [ $(free | grep Swap | awk '{print $2}') -gt 0 ]; then
-        echo "${green}Swap already enabled${plain}"
+        echo -e "${green}Swap already enabled${plain}"
         cat /proc/swaps
         free -h
         return 0
     else
-        echo "${green}Swapfile not created. creating it${plain}"
+        echo -e "${green}Swapfile not created. creating it${plain}"
         mem_num=$(awk '($1 == "MemTotal:"){print $2/1024}' /proc/meminfo | sed "s/\..*//g" | awk '{print $1*2}')
         fallocate -l ${mem_num}M /swapfile
         chmod 600 /swapfile
         mkswap /swapfile
         swapon /swapfile
         echo '/swapfile none swap defaults 0 0' >>/etc/fstab
-        echo "${green}swapfile created.${plain}"
+        echo -e "${green}swapfile created.${plain}"
         cat /proc/swaps
         free -h
     fi
@@ -80,7 +80,7 @@ function display_help() {
 
 function check_root_user() {
     if [ "$(id -u)" != "0" ]; then
-        echo "${red}Error: root user is needed${plain}"
+        echo -e "${red}Error: root user is needed${plain}"
         exit 1
     fi
 }
@@ -102,7 +102,7 @@ function check_os() {
     elif cat /proc/version | grep -Eqi "centos|red hat|redhat"; then
         release="centos"
     else
-        echo "${red}ERROR: Only support Centos8, Debian 10+ or Ubuntu16+${plain}\n" && exit 1
+        echo -e "${red}ERROR: Only support Centos8, Debian 10+ or Ubuntu16+${plain}\n" && exit 1
     fi
 
     # os arch
@@ -110,7 +110,7 @@ function check_os() {
     if [[ $arch == "x86_64" || $arch == "x64" || $arch == "amd64" ]]; then
         arch="amd64"
     else
-        echo "${red}ERROR: ${plain}Unsupported architecture: $arch\n" && exit 1
+        echo -e "${red}ERROR: ${plain}Unsupported architecture: $arch\n" && exit 1
     fi
 
     # os version
@@ -124,15 +124,15 @@ function check_os() {
 
     if [[ x"${release}" == x"centos" ]]; then
         if [[ ${os_version} -le 7 ]]; then
-            echo "${red}Please use CentOS 8 or higher version.${plain}\n" && exit 1
+            echo -e "${red}Please use CentOS 8 or higher version.${plain}\n" && exit 1
         fi
     elif [[ x"${release}" == x"ubuntu" ]]; then
         if [[ ${os_version} -lt 16 ]]; then
-            echo "${red}Please use Ubuntu 16 or higher version.${plain}\n" && exit 1
+            echo -e "${red}Please use Ubuntu 16 or higher version.${plain}\n" && exit 1
         fi
     elif [[ x"${release}" == x"debian" ]]; then
         if [[ ${os_version} -lt 10 ]]; then
-            echo "${red}Please Debian 10 or higher version.${plain}\n" && exit 1
+            echo -e "${red}Please Debian 10 or higher version.${plain}\n" && exit 1
         fi
     fi
 }
@@ -147,32 +147,32 @@ function install_base() {
 
 function install_docker_docker-compose() {
     if command -v docker >/dev/null 2>&1; then
-        echo "${green}docker already installed, skip${plain}"
+        echo -e "${green}docker already installed, skip${plain}"
     else
-        echo "${green}Installing docker${plain}"
+        echo -e "${green}Installing docker${plain}"
         curl -fsSL https://get.docker.com | sudo bash
         systemctl enable docker || service docker start
     fi
 
     if command -v docker >/dev/null 2>&1; then
-        echo "${green}docker installed successfully${plain}"
+        echo -e "${green}docker installed successfully${plain}"
     else
-        echo "${red}docker installation failed, please check your environment${plain}"
+        echo -e "${red}docker installation failed, please check your environment${plain}"
         exit 1
     fi
 
     if command -v docker-compose >/dev/null 2>&1; then
-        echo "${green}docker-compose already installed, skip${plain}"
+        echo -e "${green}docker-compose already installed, skip${plain}"
     else
-        echo "${green}Installing docker-compose${plain}"
+        echo -e "${green}Installing docker-compose${plain}"
         curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
         chmod +x /usr/local/bin/docker-compose
     fi
 
     if command -v docker-compose >/dev/null 2>&1; then
-        echo "${green}docker-compose installed successfully${plain}"
+        echo -e "${green}docker-compose installed successfully${plain}"
     else
-        echo "${red}docker-compose installation failed, please check your environment${plain}"
+        echo -e "${red}docker-compose installation failed, please check your environment${plain}"
         exit 1
     fi
 }
@@ -181,7 +181,7 @@ function download_compose_file() {
     if [[ -f docker-compose.yml ]]; then
         rm -rf docker-compose.yml
     fi
-    echo "${green}Downloading docker-compose.yml${plain}"
+    echo -e "${green}Downloading docker-compose.yml${plain}"
     wget -q https://raw.githubusercontent.com/Chasing66/peer2profit/main/docker-compose.yml -O docker-compose.yml
 }
 
@@ -190,11 +190,11 @@ function set_peer2profit_email() {
         read -rp "Input your email: " email
     fi
     if [ -n "$email" ]; then
-        echo "${green}Your email is: $email ${plain}"
+        echo -e "${green}Your email is: $email ${plain}"
         export email
         sed -i "s/email=.*/email=$email/g" docker-compose.yml
     else
-        echo "${red}Please input your email${plain}"
+        echo -e "${red}Please input your email${plain}"
         exit 1
     fi
 }
@@ -204,11 +204,11 @@ function set_contaienr_replicas_numbers() {
         read -rp "Input the container numbers you want to run: " replicas
     fi
     if [ -n "$replicas" ]; then
-        echo "${green}Your container numbers is: $replicas ${plain}"
+        echo -e "${green}Your container numbers is: $replicas ${plain}"
         export replicas
         sed -i "s/replicas:.*/replicas: $replicas/g" docker-compose.yml
     else
-        echo "${red}Please input the container numbers you want to run${plain}"
+        echo -e "${red}Please input the container numbers you want to run${plain}"
         exit 1
     fi
 }
@@ -216,24 +216,24 @@ function set_contaienr_replicas_numbers() {
 function set_image_version() {
     if [ -n "$version" ]; then
         export version
-        echo "${green}Will use version: enwaiax/peer2profit:$version ${plain}"
+        echo -e "${green}Will use version: enwaiax/peer2profit:$version ${plain}"
         sed -i "s/image:.*/image: enwaiax/peer2profit:$version/g" docker-compose.yml
     else
-        echo "${green}Will use defalut version: enwaiax/peer2profit:latest ${plain}"
+        echo -e "${green}Will use defalut version: enwaiax/peer2profit:latest ${plain}"
     fi
 }
 
 function set_proxy() {
     # if proxychains4.conf is not exist, then download it.
     if [ ! -f ./proxychains4.conf ]; then
-        echo "${green}no proxychains4.conf found, downloading... ${plain}"
+        echo -e "${green}no proxychains4.conf found, downloading... ${plain}"
         wget -q https://raw.githubusercontent.com/Chasing66/peer2profit/main/proxychains4.conf -O proxychains4.conf
     else
-        echo "${green}proxychains4.conf found, skipped ${plain}"
+        echo -e "${green}proxychains4.conf found, skipped ${plain}"
     fi
     # it use_proxy is true, then set proxychains4.conf
     if [ "$use_proxy" = true ]; then
-        echo "${green}Proxychains4 is enabled. ${plain}"
+        echo -e "${green}Proxychains4 is enabled. ${plain}"
         export use_proxy
         # set use_proxy to true in docker-compose.yml
         sed -i "s/use_proxy=.*/use_proxy=true/g" docker-compose.yml
