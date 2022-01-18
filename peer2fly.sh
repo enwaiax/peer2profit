@@ -102,7 +102,7 @@ function check_os() {
     elif cat /proc/version | grep -Eqi "centos|red hat|redhat"; then
         release="centos"
     else
-        echo -e "${red}ERROR: Only support Centos8, Debian 10+ or Ubuntu16+${plain}\n" && exit 1
+        echo "${red}ERROR: Only support Centos8, Debian 10+ or Ubuntu16+${plain}\n" && exit 1
     fi
 
     # os arch
@@ -110,7 +110,7 @@ function check_os() {
     if [[ $arch == "x86_64" || $arch == "x64" || $arch == "amd64" ]]; then
         arch="amd64"
     else
-        echo -e "${red}ERROR: ${plain}Unsupported architecture: $arch\n" && exit 1
+        echo "${red}ERROR: ${plain}Unsupported architecture: $arch\n" && exit 1
     fi
 
     # os version
@@ -124,15 +124,15 @@ function check_os() {
 
     if [[ x"${release}" == x"centos" ]]; then
         if [[ ${os_version} -le 7 ]]; then
-            echo -e "${red}Please use CentOS 8 or higher version.${plain}\n" && exit 1
+            echo "${red}Please use CentOS 8 or higher version.${plain}\n" && exit 1
         fi
     elif [[ x"${release}" == x"ubuntu" ]]; then
         if [[ ${os_version} -lt 16 ]]; then
-            echo -e "${red}Please use Ubuntu 16 or higher version.${plain}\n" && exit 1
+            echo "${red}Please use Ubuntu 16 or higher version.${plain}\n" && exit 1
         fi
     elif [[ x"${release}" == x"debian" ]]; then
         if [[ ${os_version} -lt 10 ]]; then
-            echo -e "${red}Please Debian 10 or higher version.${plain}\n" && exit 1
+            echo "${red}Please Debian 10 or higher version.${plain}\n" && exit 1
         fi
     fi
 }
@@ -190,7 +190,7 @@ function set_peer2profit_email() {
         read -rp "Input your email: " email
     fi
     if [ -n "$email" ]; then
-        echo -e "${green}Your email is: $email ${plain}"
+        echo "${green}Your email is: $email ${plain}"
         export email
         sed -i "s/email=.*/email=$email/g" docker-compose.yml
     else
@@ -204,7 +204,7 @@ function set_contaienr_replicas_numbers() {
         read -rp "Input the container numbers you want to run: " replicas
     fi
     if [ -n "$replicas" ]; then
-        echo -e "${green}Your container numbers is: $replicas ${plain}"
+        echo "${green}Your container numbers is: $replicas ${plain}"
         export replicas
         sed -i "s/replicas:.*/replicas: $replicas/g" docker-compose.yml
     else

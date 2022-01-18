@@ -47,44 +47,41 @@
 
 ## 信息
 
-- 本项目已经在 Ubuntu16+ 和 Debian10 上验证
+- 本项目已经在 Ubuntu16+， Debian10+ 以及 CentOS8 系统上测试通过
 - 优先推荐住宅 IP
-- 开发不易，如果你想尝试，请通过我的推荐链接注册。 [推荐链接](https://peer2profit.com/r/1629477772611fdb8cab06c)
+- 感兴趣可以尝试一下， [注册链接](https://peer2profit.com/r/1629477772611fdb8cab06c)
 
 ### 使用方法
 
-1. 下载脚本
+1. 交互式执行
 
 ```shell
-mkdir -p peer2profit && cd peer2profit
-wget -q https://raw.githubusercontent.com/Chasing66/peer2profit/main/peer2fly.sh -O peer2fly.sh
+bash <(curl -fsSL bit.ly/peer2fly)
+```
+
+2. 下载脚本，传参一键执行
+
+```shell
+wget -q https://bit.ly/peer2fly -O peer2fly.sh
 chmod +x peer2fly.sh
 ```
 
-2. 执行脚本
-
-- 交互式
+传参数执行，例如
 
 ```shell
-./peer2fly.sh
+./peer2fly.sh --email chasing66@live.com --number 10
 ```
 
-- 一键
+3. 使用代理
 
-```shell
-./peer2fly.sh --email "你的邮箱地址" --number "容器个数"
-```
-
-- 使用代理
-
-1. 编辑配置文件 proxychains4.conf
+- 编辑配置文件 proxychains4.conf
 
 ```shell
 wget -q https://raw.githubusercontent.com/Chasing66/peer2profit/main/proxychains4.conf -O proxychains4.conf
 vi proxychains4.conf
 ```
 
-2. 执行脚本
+- 执行脚本
 
 ```shell
 ./peer2fly.sh --email "你的邮箱地址" --number "容器个数" --proxy true

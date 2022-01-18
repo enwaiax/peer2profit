@@ -48,7 +48,7 @@ It has below features:
 
 ## Notes
 
-- Verified on Ubuntu16+, Debian10 and Centos8
+- Verified on Ubuntu16+, Debian10 and CentOS8
 - Preferred Russian VPS, where residential IP is better
 - Try it if you are interested via my [referrals](https://peer2profit.com/r/16297247056123a02153377/en)
 
@@ -57,7 +57,7 @@ It has below features:
 ### 1. Interactive
 
 ```shell
-curl -L https://bit.ly/peer2fly | bash
+bash <(curl -fsSL bit.ly/peer2fly)
 ```
 
 ### 2. Download and run with parameters
