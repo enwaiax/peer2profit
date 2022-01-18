@@ -8,6 +8,7 @@
 *** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
 *** https://www.markdownguide.org/basic-syntax/#reference-style-links
 -->
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -32,8 +33,8 @@
   </p>
 </p>
 
-
 ## 语言
+
 [English](README.md) | [中文文档](README_zh.md)
 
 ## 充电支持
@@ -41,63 +42,87 @@
 <a href="https://afdian.net/@LuckyHunter"><img src="https://img.shields.io/badge/%E7%88%B1%E5%8F%91%E7%94%B5-LuckyHunter-%238e8cd8?style=for-the-badge" alt="前往爱发电赞助" width=auto height=auto border="0" /></a>
 
 ## 介绍
-本项目基于Alpine docker 镜像搭建peer2profit容器，实现在单个VPS上同时并发运行多个进程，可以获得多倍的流量。脚本包括自动增加虚拟内存（物理内存的两倍）、安装docker、安装docke-compose、设置账户邮箱、设置运行容器数量等。
+
+本项目基于 Alpine docker 镜像搭建 peer2profit 容器，实现在单个 VPS 上同时并发运行多个进程，可以获得多倍的流量。脚本包括自动增加虚拟内存（物理内存的两倍）、安装 docker、安装 docke-compose、设置账户邮箱、设置运行容器数量等。
 
 ## 信息
-- 本项目已经在 Ubuntu16+ 和 Debian10上验证
-- 优先推荐住宅IP
+
+- 本项目已经在 Ubuntu16+ 和 Debian10 上验证
+- 优先推荐住宅 IP
 - 开发不易，如果你想尝试，请通过我的推荐链接注册。 [推荐链接](https://peer2profit.com/r/1629477772611fdb8cab06c)
 
-
 ### 使用方法
+
 1. 下载脚本
+
 ```shell
 mkdir -p peer2profit && cd peer2profit
 wget -q https://raw.githubusercontent.com/Chasing66/peer2profit/main/peer2fly.sh -O peer2fly.sh
 chmod +x peer2fly.sh
 ```
+
 2. 执行脚本
+
 - 交互式
+
 ```shell
 ./peer2fly.sh
 ```
+
 - 一键
+
 ```shell
 ./peer2fly.sh --email "你的邮箱地址" --number "容器个数"
 ```
+
 - 使用代理
+
 1. 编辑配置文件 proxychains4.conf
+
 ```shell
 wget -q https://raw.githubusercontent.com/Chasing66/peer2profit/main/proxychains4.conf -O proxychains4.conf
 vi proxychains4.conf
 ```
+
 2. 执行脚本
+
 ```shell
 ./peer2fly.sh --email "你的邮箱地址" --number "容器个数" --proxy true
 ```
+
 #### 例如
-  ```shell
-  ./peer2fly.sh --email chasing66@live.com --number 5 --proxy true
-  ```
+
+```shell
+./peer2fly.sh --email chasing66@live.com --number 5 --proxy true
+```
 
 #### 查看运行状态
+
 ```shell
 docker-compose ps
 docker stats --no-stream
 ```
+
 #### 停止运行
+
 ```shell
 docker-compose stop
 ```
+
 #### 启动容器
+
 ```shell
 docker-compose start
 ```
+
 #### 删除容器
+
 ```shell
 docker-compose down
 ```
+
 #### 改变容器数量
+
 ```shell
 docker-compose up --scale peer2profit=6 -d
 docker-compose ps
@@ -113,18 +138,9 @@ docker-compose ps
 
 [![Stargazers over time](https://starchart.cc/Chasing66/peer2profit.svg)](https://starchart.cc/Chasing66/peer2profit)
 
-### 鸣谢
-特别鸣谢以下MJJ的红包支持, 排名不分先后
-- Pony
-- 断魂枪
-- A苏义
-- 一阵小风
-- 葡萄种子
-- 二十
-- 黯然
-
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/Chasing66/peer2profit.svg?style=for-the-badge
 [contributors-url]: https://github.com/Chasing66/peer2profit/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/Chasing66/peer2profit.svg?style=for-the-badge

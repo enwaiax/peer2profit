@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# if email is not set in env, use default value
 if [ -z "$email" ]; then
-    email="chasing66@live.com"
+    echo -e "email is not set, exit."
+    exit 1
 fi
 # if use_proxy from env is set to true, then set proxy
 if [ "${use_proxy}" = true ]; then

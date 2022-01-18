@@ -1,6 +1,7 @@
 # peer2profit
 
 <!-- PROJECT SHIELDS -->
+
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
@@ -25,47 +26,60 @@
 </p>
 
 ## Language
+
 [English](README.md) | [中文文档](README_zh.md)
 
-## Introduction
-This project builds peer2profit containers based on Alpine docker image to achieve running multiple processes concurrently on a single VPS at the same time, which can get multiple times more traffic. The script includes auto increasing virtual memory(two times of the physical memory), installing docker, installing docke-compose, setting account email, setting the number of running containers, etc.
+## **Introduction**
 
-#### Some introduction vedio: [Peer2Profit Payout Proof - Earn Money With Bandwidth Sharing](https://www.youtube.com/watch?v=K2MozWH0Q5Y)
+The Peer2Profit is a peer-to-peer network that allows users to earn money by sharing your traffic.
 
-## Note
-- Verified on Ubuntu16+ and Debian10
+This project is the **first docker image** for Peer2Profit in the whole Internet, even earlier than the official Peer2Profit.
+
+It has below features:
+
+1. Supporting two types of image based on Alpine and Debian11. The tag `alpine` is absolutely the smallest image, and the tag `latest` is the most common image.
+
+2. The script `peer2fly.sh` will help will help with below steps
+   - Install the necessary packages
+   - Set Swap Memory(two times of the physical memory)
+   - Install docker and docker-compose
+   - Setting email and container numbers
+   - Start the containers as you required with docker-compose
+
+## Notes
+
+- Verified on Ubuntu16+, Debian10 and Centos8
 - Preferred Russian VPS, where residential IP is better
-- It is not easy to develop, if you want to try it, please register via my referral link. [Referral link](https://peer2profit.com/r/1629477772611fdb8cab06c)
+- Try it if you are interested via my [referrals](https://peer2profit.com/r/16297247056123a02153377/en)
 
+## Usage
 
-### Usage
-- Interactive
+### 1. Interactive
+
 ```shell
-wget -q https://raw.githubusercontent.com/Chasing66/peer2profit/main/peer2fly.sh -O peer2fly.sh
+curl -L https://bit.ly/peer2fly | bash
+```
+
+### 2. Download and run with parameters
+
+```shell
+wget -q https://bit.ly/peer2fly -O peer2fly.sh
 chmod +x peer2fly.sh
-./peer2fly.sh
-```
-- One Click Script
-```shell
-wget -q https://raw.githubusercontent.com/Chasing66/peer2profit/main/peer2fly.sh -O peer2fly.sh
-chmod +x peer2fly.sh
-```
-```shell
-./peer2fly.sh --email "chasing66@live.com" --number "10"
 ```
 
-- Install as a service on Ubuntu/Debian system
+Given the parameters, for example
+
+```shell
+./peer2fly.sh --email chasing66@live.com --number 10
+```
+
+### 3. Install as a service on Ubuntu/Debian system
+
 ```shell
 bash <(curl -fsSL git.io/JzDdQ)
 ```
 
-### Generate short link
-- example:
-```shell
-curl -i https://git.io -F "url=https://raw.githubusercontent.com/Chasing66/peer2profit/main/p2p-service.sh"  -F "code=p2p-service.sh"
-```
-
-### Disclaimer
+## Disclaimer
 
 This program is for learning purposes only, not for profit, please delete it within 24 hours after downloading, not for any commercial use. The text, data and images are copyrighted, if reproduced, please indicate the source.
 
@@ -77,6 +91,7 @@ Use of this program is subject to the deployment disclaimer. Use of this program
 
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+
 [contributors-shield]: https://img.shields.io/github/contributors/Chasing66/peer2profit.svg?style=for-the-badge
 [contributors-url]: https://github.com/Chasing66/peer2profit/graphs/contributors
 [forks-shield]: https://img.shields.io/github/forks/Chasing66/peer2profit.svg?style=for-the-badge

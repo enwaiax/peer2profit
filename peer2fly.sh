@@ -3,22 +3,32 @@
 # maintainer: https://github.com/Chasing66/peer2profit
 # version: 1.1
 
+red='\033[0;31m'
+green='\033[0;32m'
+yellow='\033[0;33m'
+plain='\033[0m'
+
 function set_vps_swap() {
+    # Skip if the virtualization is openVZ
+    if [[ -d /proc/vz ]]; then
+        echo "${green}OpenVZ virtualization detected, skipping add swap${plain}"
+        return
+    fi
     # Set swap size as two times of RAM size automatically
     if [ $(free | grep Swap | awk '{print $2}') -gt 0 ]; then
-        echo "Swap already enabled"
+        echo "${green}Swap already enabled${plain}"
         cat /proc/swaps
         free -h
         return 0
     else
-        echo "Swapfile not created. creating it."
-        mem_num=$(awk '($1 == "MemTotal:"){print $2/1024}' /proc/meminfo|sed "s/\..*//g"|awk '{print $1*2}')
+        echo "${green}Swapfile not created. creating it${plain}"
+        mem_num=$(awk '($1 == "MemTotal:"){print $2/1024}' /proc/meminfo | sed "s/\..*//g" | awk '{print $1*2}')
         fallocate -l ${mem_num}M /swapfile
         chmod 600 /swapfile
         mkswap /swapfile
         swapon /swapfile
-        echo '/swapfile none swap defaults 0 0' >> /etc/fstab
-        echo "swapfile created."
+        echo '/swapfile none swap defaults 0 0' >>/etc/fstab
+        echo "${green}swapfile created.${plain}"
         cat /proc/swaps
         free -h
     fi
@@ -27,34 +37,35 @@ function set_vps_swap() {
 function parse_args() {
     while [[ $# -gt 0 ]]; do
         case "$1" in
-            --email)
-                email="$2"
-                shift
-                shift
-                ;;
-            --number)
-                replicas="$2"
-                shift
-                shift
-                ;;
-            --version)
-                version="$2"
-                shift
-                shift
-                ;;
-            --proxy)
-                use_proxy="$2"
-                shift
-                shift
-                ;;
-            --debug-output)
-                set -x
-                shift
-                ;;
-            *)
-                error "Unknown argument: $1"
-                display_help
-                exit 1
+        --email)
+            email="$2"
+            shift
+            shift
+            ;;
+        --number)
+            replicas="$2"
+            shift
+            shift
+            ;;
+        --version)
+            version="$2"
+            shift
+            shift
+            ;;
+        --proxy)
+            use_proxy="$2"
+            shift
+            shift
+            ;;
+        --debug-output)
+            set -x
+            shift
+            ;;
+        *)
+            error "Unknown argument: $1"
+            display_help
+            exit 1
+            ;;
         esac
     done
 }
@@ -67,137 +78,169 @@ function display_help() {
     echo "Example: $0 --email test@example.com --number 3"
 }
 
-function check_whether_root_user()
-{
+function check_root_user() {
     if [ "$(id -u)" != "0" ]; then
-        echo "Error: You must be root to run this script, please use root to install"
+        echo "${red}Error: root user is needed${plain}"
         exit 1
     fi
 }
 
-function install_mandantory_packages()
-{
-    linux_distribution=$(grep "^NAME=" /etc/os-release | cut -d= -f2)
-    linux_version=$(grep "^VERSION_ID=" /etc/os-release | cut -d= -f2)
-    echo "Linux distribution is: $linux_distribution"
-    echo "Linux version is: $linux_version"
-    if [ $(echo $linux_distribution | grep "CentOS" &>/dev/null; echo $?) -eq 0  ]; then
+function check_os() {
+    # os distro release
+    if [[ -f /etc/redhat-release ]]; then
+        release="centos"
+    elif cat /etc/issue | grep -Eqi "debian"; then
+        release="debian"
+    elif cat /etc/issue | grep -Eqi "ubuntu"; then
+        release="ubuntu"
+    elif cat /etc/issue | grep -Eqi "centos|red hat|redhat"; then
+        release="centos"
+    elif cat /proc/version | grep -Eqi "debian"; then
+        release="debian"
+    elif cat /proc/version | grep -Eqi "ubuntu"; then
+        release="ubuntu"
+    elif cat /proc/version | grep -Eqi "centos|red hat|redhat"; then
+        release="centos"
+    else
+        echo -e "${red}ERROR: Only support Centos8, Debian 10+ or Ubuntu16+${plain}\n" && exit 1
+    fi
+
+    # os arch
+    arch=$(arch)
+    if [[ $arch == "x86_64" || $arch == "x64" || $arch == "amd64" ]]; then
+        arch="amd64"
+    else
+        echo -e "${red}ERROR: ${plain}Unsupported architecture: $arch\n" && exit 1
+    fi
+
+    # os version
+    os_version=""
+    if [[ -f /etc/os-release ]]; then
+        os_version=$(awk -F'[= ."]' '/VERSION_ID/{print $3}' /etc/os-release)
+    fi
+    if [[ -z "$os_version" && -f /etc/lsb-release ]]; then
+        os_version=$(awk -F'[= ."]+' '/DISTRIB_RELEASE/{print $2}' /etc/lsb-release)
+    fi
+
+    if [[ x"${release}" == x"centos" ]]; then
+        if [[ ${os_version} -le 7 ]]; then
+            echo -e "${red}Please use CentOS 8 or higher version.${plain}\n" && exit 1
+        fi
+    elif [[ x"${release}" == x"ubuntu" ]]; then
+        if [[ ${os_version} -lt 16 ]]; then
+            echo -e "${red}Please use Ubuntu 16 or higher version.${plain}\n" && exit 1
+        fi
+    elif [[ x"${release}" == x"debian" ]]; then
+        if [[ ${os_version} -lt 10 ]]; then
+            echo -e "${red}Please Debian 10 or higher version.${plain}\n" && exit 1
+        fi
+    fi
+}
+
+function install_base() {
+    if [[ x"${release}" == x"centos" ]]; then
         yum install wget sudo curl -y &>/dev/null
-        if [ `echo ${linux_version} | awk -v tem="8" '{print($1<tem)? "1":"0"}'` -eq "0" ]; then
-            echo "This script is designed for Centos8+"
-            exit 1
-        fi
-    elif [ $(echo $linux_distribution | grep "Debian" &>/dev/null; echo $?) -eq 0  ] || [ $(echo $linux_distribution | grep "Ubuntu" &>/dev/null; echo $?) -eq 0 ]; then
-        apt update &>/dev/null && apt install wget sudo curl -y &>/dev/null
-        if [ `echo ${linux_version} | awk -v tem="10" '{print($1<tem)? "1":"0"}'` -eq "0" ]; then
-            echo "This script is designed for Debian 10+ or Ubuntu16+."
-            exit 1
-        fi
     else
-        echo "Unsupported linux system"
-        exit 1
+        apt update &>/dev/null && apt install wget sudo curl -y &>/dev/null
     fi
 }
 
-function install_docker_dockercompose() {
-    if which docker >/dev/null; then
-        echo "Docker has been installed, skipped"
+function install_docker_docker-compose() {
+    if command -v docker >/dev/null 2>&1; then
+        echo "${green}docker already installed, skip${plain}"
     else
-        echo "Installing Docker..."
-        curl -fsSL https://get.docker.com -o get-docker.sh
-        sudo sh get-docker.sh
-        check_docker_version=$(docker version &>/dev/null; echo $?)
-        if [[ $check_docker_version -eq 0 ]]; then
-            echo "Docker installed successfully."
-        else
-            echo "Docker install failed."
-            exit 1
-        fi
+        echo "${green}Installing docker${plain}"
+        curl -fsSL https://get.docker.com | sudo bash
         systemctl enable docker || service docker start
-        rm get-docker.sh
     fi
-    if which docker-compose >/dev/null; then
-        echo "docker-compose has been installed, skipped"
+
+    if command -v docker >/dev/null 2>&1; then
+        echo "${green}docker installed successfully${plain}"
     else
-        echo "Installing docker-compose..."
+        echo "${red}docker installation failed, please check your environment${plain}"
+        exit 1
+    fi
+
+    if command -v docker-compose >/dev/null 2>&1; then
+        echo "${green}docker-compose already installed, skip${plain}"
+    else
+        echo "${green}Installing docker-compose${plain}"
         curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
         chmod +x /usr/local/bin/docker-compose
-        check_docker_compose_version=$(docker-compose version &>/dev/null; echo $?)
-        if [[ $check_docker_compose_version -eq 0 ]]; then
-            echo "docker-compose installed successfully."
-        else
-            echo "docker-compose install failed."
-            exit 1
-        fi
+    fi
+
+    if command -v docker-compose >/dev/null 2>&1; then
+        echo "${green}docker-compose installed successfully${plain}"
+    else
+        echo "${red}docker-compose installation failed, please check your environment${plain}"
+        exit 1
     fi
 }
 
-function download_compose_file()
-{
+function download_compose_file() {
+    if [[ -f docker-compose.yml ]]; then
+        rm -rf docker-compose.yml
+    fi
+    echo "${green}Downloading docker-compose.yml${plain}"
     wget -q https://raw.githubusercontent.com/Chasing66/peer2profit/main/docker-compose.yml -O docker-compose.yml
 }
 
-function set_peer2profit_email()
-{
+function set_peer2profit_email() {
     if [ -z "$email" ]; then
         read -rp "Input your email: " email
     fi
     if [ -n "$email" ]; then
-        echo "Your email is: $email"
+        echo -e "${green}Your email is: $email ${plain}"
         export email
         sed -i "s/email=.*/email=$email/g" docker-compose.yml
     else
-        echo "Please input your email."
+        echo "${red}Please input your email${plain}"
         exit 1
     fi
 }
 
-function set_contaienr_replicas_numbers()
-{
+function set_contaienr_replicas_numbers() {
     if [ -z "$replicas" ]; then
         read -rp "Input the container numbers you want to run: " replicas
     fi
     if [ -n "$replicas" ]; then
-        echo "Your container numbers is: $replicas"
+        echo -e "${green}Your container numbers is: $replicas ${plain}"
         export replicas
         sed -i "s/replicas:.*/replicas: $replicas/g" docker-compose.yml
     else
-        echo "Please input the container numbers you want to run."
+        echo "${red}Please input the container numbers you want to run${plain}"
         exit 1
     fi
 }
 
-function set_image_version()
-{
+function set_image_version() {
     if [ -n "$version" ]; then
         export version
-        echo "Will use version: enwaiax/peer2profit:$version"
+        echo "${green}Will use version: enwaiax/peer2profit:$version ${plain}"
         sed -i "s/image:.*/image: enwaiax/peer2profit:$version/g" docker-compose.yml
     else
-        echo "Will use defalut version: enwaiax/peer2profit:latest"
+        echo "${green}Will use defalut version: enwaiax/peer2profit:latest ${plain}"
     fi
 }
 
-function set_proxy()
-{
+function set_proxy() {
     # if proxychains4.conf is not exist, then download it.
     if [ ! -f ./proxychains4.conf ]; then
-        echo "no proxychains4.conf found, downloading..."
+        echo "${green}no proxychains4.conf found, downloading... ${plain}"
         wget -q https://raw.githubusercontent.com/Chasing66/peer2profit/main/proxychains4.conf -O proxychains4.conf
     else
-        echo "proxychains4.conf found, skipped"
+        echo "${green}proxychains4.conf found, skipped ${plain}"
     fi
     # it use_proxy is true, then set proxychains4.conf
     if [ "$use_proxy" = true ]; then
-        echo "Proxychains4 is enabled."
+        echo "${green}Proxychains4 is enabled. ${plain}"
         export use_proxy
         # set use_proxy to true in docker-compose.yml
         sed -i "s/use_proxy=.*/use_proxy=true/g" docker-compose.yml
     fi
 }
 
-function start_containers()
-{
+function start_containers() {
     export COMPOSE_HTTP_TIMEOUT=500
     docker-compose pull
     docker-compose up -d
@@ -207,13 +250,13 @@ function start_containers()
     docker stats --no-stream
 }
 
-function peer2fly()
-{   
+function peer2fly() {
     parse_args "$@"
-    check_whether_root_user
+    check_root_user
     set_vps_swap
-    install_mandantory_packages
-    install_docker_dockercompose
+    check_os
+    install_base
+    install_docker_docker-compose
     download_compose_file
     set_peer2profit_email
     set_contaienr_replicas_numbers
