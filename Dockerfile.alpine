@@ -15,9 +15,12 @@ RUN apk add --no-cache --virtual=.build-dependencies wget \
     && apk del glibc-i18n && rm "/root/.wget-hsts" && apk del .build-dependencies wget \
     && rm "$ALPINE_GLIBC_BASE_PACKAGE_FILENAME" "$ALPINE_GLIBC_BIN_PACKAGE_FILENAME" "$ALPINE_GLIBC_I18N_PACKAGE_FILENAME" \
     && apk add --no-cache ca-certificates bash
+ENV PS1="\[\e[1;34m\]# \[\e[1;36m\]\u \[\e[1;0m\]@ \[\e[1;32m\]\h \[\e[1;0m\]in \[\e[1;33m\]\w \[\e[1;0m\][\[\e[1;0m\]\t\[\e[1;0m\]]\n\[\e[1;31m\]$\[\e[0m\] "
 WORKDIR /root
-COPY p2pclient /root/p2pclient
-RUN chmod +x /root/p2pclient
-ENV email=chasing66@live.com
+COPY entrypoint.sh /root/entrypoint.sh
+RUN chmod +x entrypoint.sh
+COPY p2pclient /usr/bin/p2pclient
+RUN chmod +x /usr/bin/p2pclient
 VOLUME [ "/root/.config" ]
-ENTRYPOINT [ "/bin/sh", "-c", "/root/p2pclient -l ${email}" ]
+ENTRYPOINT ["/root/entrypoint.sh"]
+

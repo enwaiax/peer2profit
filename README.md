@@ -64,13 +64,12 @@ bash <(curl -fsSL bit.ly/peer2fly)
 
 ```shell
 wget -q https://bit.ly/peer2fly -O peer2fly.sh
-chmod +x peer2fly.sh
 ```
 
 Given the parameters, for example
 
 ```shell
-./peer2fly.sh --email chasing66@live.com --number 10
+bash peer2fly.sh --email chasing66@live.com --number 10
 ```
 
 ### 3. Install as a service on Ubuntu/Debian system

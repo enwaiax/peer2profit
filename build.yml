@@ -11,3 +11,10 @@ services:
       - use_proxy=false
     volumes:
       - ./proxychains4.conf:/root/proxychains4.conf
+    dns:
+      - 1.1.1.1
+      - 8.8.8.8
+    logging: 
+      driver: "local"
+      options:
+        max-size: "1m"

@@ -63,13 +63,12 @@ bash <(curl -fsSL bit.ly/peer2fly)
 
 ```shell
 wget -q https://bit.ly/peer2fly -O peer2fly.sh
-chmod +x peer2fly.sh
 ```
 
 传参数执行，例如
 
 ```shell
-./peer2fly.sh --email chasing66@live.com --number 10
+bash peer2fly.sh --email chasing66@live.com --number 10
 ```
 
 3. 使用代理

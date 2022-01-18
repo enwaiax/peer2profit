@@ -154,9 +154,7 @@ function install_docker_docker-compose() {
         systemctl enable docker || service docker start
     fi
 
-    if command -v docker >/dev/null 2>&1; then
-        echo -e "${green}docker installed successfully${plain}"
-    else
+    if ! command -v docker >/dev/null 2>&1; then
         echo -e "${red}docker installation failed, please check your environment${plain}"
         exit 1
     fi
@@ -169,9 +167,7 @@ function install_docker_docker-compose() {
         chmod +x /usr/local/bin/docker-compose
     fi
 
-    if command -v docker-compose >/dev/null 2>&1; then
-        echo -e "${green}docker-compose installed successfully${plain}"
-    else
+    if ! command -v docker-compose >/dev/null 2>&1; then
         echo -e "${red}docker-compose installation failed, please check your environment${plain}"
         exit 1
     fi
