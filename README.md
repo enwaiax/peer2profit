@@ -33,11 +33,11 @@
 
 The Peer2Profit is a peer-to-peer network that allows users to earn money by sharing your traffic.
 
-This project is the **first docker image** for Peer2Profit in the whole Internet, even earlier than the official Peer2Profit.
+This project is the **first docker image** for Peer2Profit in the whole Internet, even earlier than the Peer2Profit official image.
 
 It has below features:
 
-1. Supporting two types of image based on Alpine and Debian11. The tag `alpine` is absolutely the smallest image, and the tag `latest` is the most common image.
+1. Supporting two tags of image based on Alpine and Debian11. The tag `alpine` is absolutely the smallest image, and the tag `latest` is the most common image.
 
 2. The script `peer2fly.sh` will help will help with below steps
    - Install the necessary packages
@@ -60,6 +60,11 @@ It has below features:
 bash <(curl -fsSL bit.ly/peer2fly)
 ```
 
+Or giving the parameters:
+```shell
+curl -fsSL bit.ly/peer2fly |bash -s -- --email chasing66@live.com --number 5
+```
+
 ### 2. Download and run with parameters
 
 ```shell
@@ -75,7 +80,7 @@ bash peer2fly.sh --email chasing66@live.com --number 10
 ### 3. Install as a service on Ubuntu/Debian system
 
 ```shell
-bash <(curl -fsSL git.io/JzDdQ)
+bash <(curl -fsSL git.io/JzDdQ) chasing66@live.com
 ```
 
 ## Disclaimer
@@ -91,17 +96,17 @@ Use of this program is subject to the deployment disclaimer. Use of this program
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/Chasing66/peer2profit.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/Chasing66/peer2profit.svg?style=flat-square
 [contributors-url]: https://github.com/Chasing66/peer2profit/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/Chasing66/peer2profit.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/Chasing66/peer2profit.svg?style=flat-square
 [forks-url]: https://github.com/Chasing66/peer2profit/network/members
-[stars-shield]: https://img.shields.io/github/stars/Chasing66/peer2profit.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/Chasing66/peer2profit.svg?style=flat-square
 [stars-url]: https://github.com/Chasing66/peer2profit/stargazers
-[issues-shield]: https://img.shields.io/github/issues/Chasing66/peer2profit.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/Chasing66/peer2profit.svg?style=flat-square
 [issues-url]: https://github.com/Chasing66/peer2profit/issues
-[license-shield]: https://img.shields.io/github/license/Chasing66/peer2profit.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/Chasing66/peer2profit.svg?style=flat-square
 [license-url]: https://github.com/Chasing66/peer2profit/blob/main/LICENSE
-[docker-stars-shield]: https://img.shields.io/docker/stars/enwaiax/peer2profit.svg?style=for-the-badge
+[docker-stars-shield]: https://img.shields.io/docker/stars/enwaiax/peer2profit.svg?style=flat-square
 [docker-stars-url]: https://hub.docker.com/r/enwaiax/peer2profit
-[docker-pulls-shield]: https://img.shields.io/docker/pulls/enwaiax/peer2profit.svg?style=for-the-badge
+[docker-pulls-shield]: https://img.shields.io/docker/pulls/enwaiax/peer2profit.svg?style=flat-square
 [docker-pulls-url]: https://hub.docker.com/r/enwaiax/peer2profit

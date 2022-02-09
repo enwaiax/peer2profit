@@ -39,11 +39,24 @@
 
 ## 充电支持
 
-<a href="https://afdian.net/@LuckyHunter"><img src="https://img.shields.io/badge/%E7%88%B1%E5%8F%91%E7%94%B5-LuckyHunter-%238e8cd8?style=for-the-badge" alt="前往爱发电赞助" width=auto height=auto border="0" /></a>
+<a href="https://afdian.net/@LuckyHunter"><img src="https://img.shields.io/badge/%E7%88%B1%E5%8F%91%E7%94%B5-LuckyHunter-%238e8cd8?style=flat-square" alt="前往爱发电赞助" width=auto height=auto border="0" /></a>
 
 ## 介绍
 
-本项目基于 Alpine docker 镜像搭建 peer2profit 容器，实现在单个 VPS 上同时并发运行多个进程，可以获得多倍的流量。脚本包括自动增加虚拟内存（物理内存的两倍）、安装 docker、安装 docke-compose、设置账户邮箱、设置运行容器数量等。
+Peer2Profit 通过分享你的闲置带宽从而获取收益。
+
+本项目是整个互联网上的**第一个 Peer2Profit 的 docker 镜像**，比 Peer2Profit 的官方镜像更早。
+
+本项目有以下特点：
+
+1. 支持基于 Alpine 和 Debian11 两种镜像。`enwaiax/peer2profit:latest`基于 Debian11 编译。`enwaiax/peer2profit:alpine`基于 Alpine 编译，镜像极小。
+
+2. 一键脚本实现了以下功能：
+   - 安装基本软件包
+   - 设置虚拟内存（为实际物理内存的两倍）
+   - 安装 docker 和 docker-compose
+   - 设定邮件以及启动的 docker 容器数量
+   - 通过 docker-compose 便捷化增加、删除、移除容器
 
 ## 信息
 
@@ -69,6 +82,11 @@ wget -q https://bit.ly/peer2fly -O peer2fly.sh
 
 ```shell
 bash peer2fly.sh --email chasing66@live.com --number 10
+```
+
+或者：
+```shell
+curl -fsSL bit.ly/peer2fly |bash -s -- --email chasing66@live.com --number 5
 ```
 
 3. 使用代理
@@ -137,17 +155,17 @@ docker-compose ps
 <!-- MARKDOWN LINKS & IMAGES -->
 <!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
 
-[contributors-shield]: https://img.shields.io/github/contributors/Chasing66/peer2profit.svg?style=for-the-badge
+[contributors-shield]: https://img.shields.io/github/contributors/Chasing66/peer2profit.svg?style=flat-square
 [contributors-url]: https://github.com/Chasing66/peer2profit/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/Chasing66/peer2profit.svg?style=for-the-badge
+[forks-shield]: https://img.shields.io/github/forks/Chasing66/peer2profit.svg?style=flat-square
 [forks-url]: https://github.com/Chasing66/peer2profit/network/members
-[stars-shield]: https://img.shields.io/github/stars/Chasing66/peer2profit.svg?style=for-the-badge
+[stars-shield]: https://img.shields.io/github/stars/Chasing66/peer2profit.svg?style=flat-square
 [stars-url]: https://github.com/Chasing66/peer2profit/stargazers
-[issues-shield]: https://img.shields.io/github/issues/Chasing66/peer2profit.svg?style=for-the-badge
+[issues-shield]: https://img.shields.io/github/issues/Chasing66/peer2profit.svg?style=flat-square
 [issues-url]: https://github.com/Chasing66/peer2profit/issues
-[license-shield]: https://img.shields.io/github/license/Chasing66/peer2profit.svg?style=for-the-badge
+[license-shield]: https://img.shields.io/github/license/Chasing66/peer2profit.svg?style=flat-square
 [license-url]: https://github.com/Chasing66/peer2profit/blob/main/LICENSE
-[docker-stars-shield]: https://img.shields.io/docker/stars/enwaiax/peer2profit.svg?style=for-the-badge
+[docker-stars-shield]: https://img.shields.io/docker/stars/enwaiax/peer2profit.svg?style=flat-square
 [docker-stars-url]: https://hub.docker.com/r/enwaiax/peer2profit
-[docker-pulls-shield]: https://img.shields.io/docker/pulls/enwaiax/peer2profit.svg?style=for-the-badge
+[docker-pulls-shield]: https://img.shields.io/docker/pulls/enwaiax/peer2profit.svg?style=flat-square
 [docker-pulls-url]: https://hub.docker.com/r/enwaiax/peer2profit
