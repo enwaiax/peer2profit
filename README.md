@@ -39,7 +39,7 @@ It has below features:
 
 1. Supporting two tags of image based on Alpine and Debian11. The tag `alpine` is absolutely the smallest image, and the tag `latest` is the most common image.
 
-2. The script `peer2fly.sh` will help will help with below steps
+2. The script `peer2fly.sh` will help with below steps
    - Install the necessary packages
    - Set Swap Memory(two times of the physical memory)
    - Install docker and docker-compose
