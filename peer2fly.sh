@@ -2,7 +2,7 @@
 
 # maintainer: https://github.com/Chasing66/peer2profit
 # version: 1.1
-# p2pclient_version: 0.59
+# p2pclient_version: 0.60
 
 red='\033[0;31m'
 green='\033[0;32m'

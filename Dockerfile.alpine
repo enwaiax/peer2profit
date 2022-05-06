@@ -1,5 +1,5 @@
 FROM alpine:edge
-LABEL org.opencontainers.image.authors="<chasing66@live.com>" version="0.59"
+LABEL org.opencontainers.image.authors="<chasing66@live.com>" version="0.60"
 ARG ALPINE_GLIBC_PACKAGE_VERSION="2.34-r0"
 ARG ALPINE_GLIBC_BASE_URL="https://github.com/sgerrand/alpine-pkg-glibc/releases/download" \
     ALPINE_GLIBC_BASE_PACKAGE_FILENAME="glibc-${ALPINE_GLIBC_PACKAGE_VERSION}.apk" \
