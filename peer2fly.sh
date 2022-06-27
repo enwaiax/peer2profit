@@ -106,14 +106,6 @@ function check_os() {
         echo -e "${red}ERROR: Only support Centos8, Debian 10+ or Ubuntu16+${plain}\n" && exit 1
     fi
 
-    # os arch
-    arch=$(arch)
-    if [[ $arch == "x86_64" || $arch == "x64" || $arch == "amd64" ]]; then
-        arch="amd64"
-    else
-        echo -e "${red}ERROR: ${plain}Unsupported architecture: $arch\n" && exit 1
-    fi
-
     # os version
     os_version=""
     if [[ -f /etc/os-release ]]; then

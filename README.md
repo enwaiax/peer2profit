@@ -37,7 +37,7 @@ This project is the **first docker image** for Peer2Profit in the whole Internet
 
 It has below features:
 
-1. Supporting two tags of image based on Alpine and Debian11. The tag `alpine` is absolutely the smallest image, and the tag `latest` is the most common image.
+1. Supporting two tags of image based on Alpine and Debian-11. The tag `alpine` is absolutely the smallest image, and the tag `latest` is the Debian-11 based image.
 
 2. The script `peer2fly.sh` will help with below steps
    - Install the necessary packages
@@ -45,6 +45,8 @@ It has below features:
    - Install docker and docker-compose
    - Setting email and container numbers
    - Start the containers as you required with docker-compose
+
+3. Support Docker image for linux/386, linux/amd64, linux/arm/v7, linux/arm64
 
 ## Notes
 

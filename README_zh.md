@@ -49,7 +49,7 @@ Peer2Profit 通过分享你的闲置带宽从而获取收益。
 
 本项目有以下特点：
 
-1. 支持基于 Alpine 和 Debian11 两种镜像。`enwaiax/peer2profit:latest`基于 Debian11 编译。`enwaiax/peer2profit:alpine`基于 Alpine 编译，镜像极小。
+1. 支持基于 Alpine 和 Debian11 两种镜像。`enwaiax/peer2profit:latest`基于 Debian-11 编译。`enwaiax/peer2profit:alpine`基于 Alpine 编译，镜像极小。
 
 2. 一键脚本实现了以下功能：
    - 安装基本软件包
@@ -57,6 +57,8 @@ Peer2Profit 通过分享你的闲置带宽从而获取收益。
    - 安装 docker 和 docker-compose
    - 设定邮件以及启动的 docker 容器数量
    - 通过 docker-compose 便捷化增加、删除、移除容器
+
+3. 全平台 docker 镜像支持
 
 ## 信息
 
