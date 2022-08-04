@@ -3,7 +3,7 @@
 # This script is used to start the p2pclient.
 # Will only support Debian and Ubuntu based systems.
 
-p2pclient_deb_url="https://updates.peer2profit.app/p2pclient_0.60_amd64.deb"
+p2pclient_deb_url="https://updates.peer2profit.app/peer2profit_0.48_amd64.deb"
 
 export email="$1"
 if [ -z "$email" ]; then
