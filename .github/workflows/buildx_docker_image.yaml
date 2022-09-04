@@ -1,4 +1,4 @@
-name: builder
+name: docker hub release
 on:
   workflow_dispatch:
   push:
@@ -6,7 +6,7 @@ on:
       - "main"
 
 jobs:
-  docker:
+  buildx-dockerhub:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout

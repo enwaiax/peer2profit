@@ -8,11 +8,11 @@ fi
 if [ "${use_proxy}" = true ]; then
     # check whether proxychains4.conf exists
     if [ -f /root/proxychains4.conf ]; then
-        proxychains4 -q -f /root/proxychains4.conf p2pclient -l ${email}
+        proxychains4 -q -f /root/proxychains4.conf p2pclient -l "${email}"
     else
         echo "Proxychains4.conf not found, exit"
         exit 1
     fi
 else
-    p2pclient -l ${email}
+    p2pclient -l "${email}"
 fi
