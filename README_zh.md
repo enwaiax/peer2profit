@@ -21,7 +21,7 @@
 <br />
 <p align="center">
   <br>
-    <img src="https://peer2profit.com/landing/img/logo.png" alt="Logo" width="43" height="42">
+    <img src="https://github.com/Chasing66/peer2profit/blob/main/static/logo_p2p.png" alt="Logo" width="43" height="42">
     <h3 align="center">Peer2Profit</br>
   </br>
   <h3 align="center">Docker image for Peer2Profit</h3>
@@ -52,6 +52,7 @@ Peer2Profit 通过分享你的闲置带宽从而获取收益。
 1. 支持基于 Alpine 和 Debian11 两种镜像。`enwaiax/peer2profit:latest`基于 Debian-11 编译。`enwaiax/peer2profit:alpine`基于 Alpine 编译，镜像极小。
 
 2. 一键脚本实现了以下功能：
+
    - 安装基本软件包
    - 设置虚拟内存（为实际物理内存的两倍）
    - 安装 docker 和 docker-compose
@@ -87,6 +88,7 @@ bash peer2fly.sh --email chasing66@live.com --number 10
 ```
 
 或者：
+
 ```shell
 curl -fsSL bit.ly/peer2fly |bash -s -- --email chasing66@live.com --number 5
 ```

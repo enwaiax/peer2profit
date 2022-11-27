@@ -13,7 +13,7 @@
 <br />
 <p align="center">
   <br>
-    <img src="https://peer2profit.com/landing/img/logo.png" alt="Logo" width="43" height="42">
+    <img src="https://github.com/Chasing66/peer2profit/blob/main/static/logo_p2p.png" alt="Logo" width="43" height="42">
     <h3 align="center">Peer2Profit</br>
   </br>
   <h3 align="center">Docker image for Peer2Profit</h3>
@@ -27,7 +27,7 @@
 
 ## Language
 
-[English](README.md) | [中文文档](README_zh.md)
+[English](README.md) | [中文文档](https://github.com/Chasing66/peer2profit/blob/main/README_zh.md)
 
 ## **Introduction**
 
@@ -40,6 +40,7 @@ It has below features:
 1. Supporting two tags of image based on Alpine and Debian-11. The tag `alpine` is absolutely the smallest image, and the tag `latest` is the Debian-11 based image.
 
 2. The script `peer2fly.sh` will help with below steps
+
    - Install the necessary packages
    - Set Swap Memory(two times of the physical memory)
    - Install docker and docker-compose
@@ -63,6 +64,7 @@ bash <(curl -fsSL bit.ly/peer2fly)
 ```
 
 Or giving the parameters:
+
 ```shell
 curl -fsSL bit.ly/peer2fly |bash -s -- --email chasing66@live.com --number 5
 ```
