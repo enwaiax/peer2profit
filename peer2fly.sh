@@ -16,7 +16,11 @@ function set_vps_swap() {
         return
     fi
     # Set swap size as two times of RAM size automatically
-    if [ $(free | grep Swap | awk '{print $2}') -gt 0 ]; then
+    if [ $(free -m | grep Mem | awk '{print $2}') -gt 512 ]; then
+        echo -e "${green}Enough memory, swap is not needed${plain}"
+        free -m
+        return 0
+    elif [ $(free -m | grep Swap | awk '{print $2}') -gt 0 ]; then
         echo -e "${green}Swap already enabled${plain}"
         cat /proc/swaps
         free -h
