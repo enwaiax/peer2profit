@@ -1,18 +1,27 @@
 #!/bin/bash
 
+P2P_CONFIG="/root/.config/org.peer2profit.peer2profit.ini"
+
 if [ -z "$email" ]; then
-    echo -e "email is not set, exit."
+    echo "Please specify account email address via email=<email>"
     exit 1
 fi
-# if use_proxy from env is set to true, then set proxy
-if [ "${use_proxy}" = true ]; then
-    # check whether proxychains4.conf exists
-    if [ -f /root/proxychains4.conf ]; then
-        proxychains4 -q -f /root/proxychains4.conf p2pclient -l "${email}"
-    else
-        echo "Proxychains4.conf not found, exit"
-        exit 1
-    fi
+if [ ! -f $P2P_CONFIG ]; then
+    echo "Creating config..."
+    tee $P2P_CONFIG <<END
+[General]
+StartOnStartup=true
+hideToTrayMsg=true
+locale=en_US
+Username=$email
+installid2=$(cat /proc/sys/kernel/random/uuid)
+END
+    echo -n
+fi
+
+echo "Staring Peer2Profit..."
+if [ "${use_proxy}" = true ] && [ -f /root/proxychains4.conf ]; then
+    proxychains4 -q -f /root/proxychains4.conf xvfb-run peer2profit
 else
-    p2pclient -l "${email}"
+    xvfb-run peer2profit
 fi

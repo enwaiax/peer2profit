@@ -1,6 +1,6 @@
 version: '3.9'
 services:
-  p2p:
+  peer2profit:
     deploy:
       replicas: 1
       restart_policy:

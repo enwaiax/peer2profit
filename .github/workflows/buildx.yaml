@@ -36,7 +36,7 @@ jobs:
 
       - name: Lower case
         id: string
-        uses: ASzc/change-string-case-action@v5
+        uses: ASzc/change-string-case-action@@v6
         with:
           string: ${{ secrets.DOCKERHUB_USERNAME }}/${{ github.event.repository.name }}
 
@@ -44,19 +44,11 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           context: .
-          platforms: linux/amd64,linux/arm64,linux/arm/v7,linux/386
+          platforms: linux/amd64
           push: true
           tags: ${{ steps.string.outputs.lowercase }}:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new,mode=max
-
-      - name: Build and push with alpine tag
-        uses: docker/build-push-action@v5
-        with:
-          file: ./Dockerfile.alpine
-          platforms: linux/amd64
-          push: true
-          tags: ${{ steps.string.outputs.lowercase }}:alpine
 
       - name: Sync README.md
         uses: ms-jpq/sync-dockerhub-readme@v1

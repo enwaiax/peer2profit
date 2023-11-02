@@ -1,13 +1,14 @@
 version: '3.9'
 services:
-  p2p:
+  peer2profit:
     build:
       context: .
-      dockerfile: Dockerfile.alpine
-    image: enwaiax/peer2profit:test
+      dockerfile: Dockerfile
+    container_name: peer2profit
+    image: enwaiax/peer2profit:latest
     restart: unless-stopped
     environment:
-      - email=chasing66@live.com
+      - email=chasing0806@gmail.com
       - use_proxy=false
     volumes:
       - ./proxychains4.conf:/root/proxychains4.conf
